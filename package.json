@@ -12,7 +12,7 @@
     "lint:fix": "eslint --ext .js,.cjs,.ts,.tsx . --fix",
     "typecheck": "tsc --noEmit",
     "prepare": "husky install",
-    "commitlint": "commitlint --edit"
+    "commitlint": "commitlint --edit",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
