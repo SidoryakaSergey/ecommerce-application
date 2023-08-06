@@ -8,6 +8,7 @@ module.exports = {
     'airbnb-typescript/base',
     'airbnb/hooks',
     'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:import/recommended',
@@ -24,5 +25,10 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     'react/react-in-jsx-scope': 0,
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 };
