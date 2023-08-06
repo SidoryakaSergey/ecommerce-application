@@ -1,4 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
-exec >/dev/console 2>&1
-npm run commitlint ${1}
+
+# npm run format
+npm run lint
+# npm test
+
