@@ -16,6 +16,7 @@ Welcome to our eCommerce application! This platform replicates real-world shoppi
 ##### 2. Run `git bash` in the repository folder.
 ##### 3. Run `npm i` to install all dependencies.
 ##### 4. Use `npm run build` to run the application.
+
 ---
 # Scripts
 
@@ -58,5 +59,23 @@ npm run lint:fix
 The "typecheck" script in the package.json file performs type checking on the project without emitting any output. It helps identify type-related errors and ensure type safety in the codebase.
 ```bash
 npm run typecheck
+```
+
+### Prepare script 
+The "prepare" script is used to install the Husky package. Husky is a Git hook manager that allows you to run scripts at specific points in your Git workflow. By running the "prepare" script, Husky is installed and set up to enable Git hooks for your project.
+```bash
+npm run prepare
+```
+
+### Сommitlint script 
+The "commitlint" script is used to run the commitlint tool with the "--edit" flag. commitlint is a tool that enforces a specific commit message format or convention in your Git repository. By running the "commitlint" script with the "--edit" flag, it opens an interactive prompt where you can edit your commit message and ensures that it adheres to the specified commit message format or convention.
+```bash
+npm run commitlint
+```
+
+### Format script 
+The "format" script is used to format code using the Prettier tool. Prettier is a code formatter that helps maintain consistent code style across your project. Running the "format" script with the specified command will automatically format all JavaScript, JSX, TypeScript, and TSX files in the "src" directory and its subdirectories. It applies the defined code formatting rules and updates the files in-place, making it easy to ensure consistent code style throughout your project.
+```bash
+npm run format
 ```
 
