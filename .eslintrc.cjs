@@ -31,4 +31,5 @@ module.exports = {
       version: 'detect',
     },
   },
+  ignorePatterns: ['.eslintrc.cjs', 'vite.config.ts', 'tailwind.config.js'],
 };
