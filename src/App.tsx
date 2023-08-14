@@ -1,12 +1,17 @@
 import { HashRouter, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
+import Main from './pages/Main';
+import Login from './pages/Login';
 import NotFound from './pages/NotFound';
+import Layout from './components/Layout';
 
 export function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="*" element={<NotFound />} />
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Main />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
     </Routes>
   );
 }
