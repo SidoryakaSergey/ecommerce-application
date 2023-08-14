@@ -46,6 +46,7 @@ function LoginForm() {
         >
           Log In
         </button>
+        <p className="text-gray text-sm italic">* mandatory field</p>
       </form>
       <br />
 
