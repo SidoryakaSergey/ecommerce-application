@@ -1,11 +1,11 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import Main from './Main';
+import MainPage from './MainPage';
 
-describe('Main', () => {
+describe('MainPage', () => {
   it('Renders main content', () => {
     // ARRANGE
-    render(<Main />);
+    render(<MainPage />);
     // ACT
     // EXPECT
     expect(

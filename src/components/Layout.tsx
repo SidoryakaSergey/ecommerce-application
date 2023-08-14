@@ -4,10 +4,6 @@ import Header from './Header';
 function Layout() {
   return (
     <>
-      {/* <header>
-        <NavLink to="/">Main</NavLink>
-        <NavLink to="/login">Login</NavLink>
-      </header> */}
       <Header />
       <main className="flex-grow bg-gray-100 p-8 flex flex-col">
         <Outlet />

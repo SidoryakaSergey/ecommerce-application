@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ function LoginForm() {
   };
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex flex-col justify-center items-center">
       <form className="w-full max-w-sm bg-white p-8 rounded shadow-md" onSubmit={handleSubmit}>
         <h2 className="text-2xl font-semibold mb-4">Login</h2>
         <div className="mb-4">
@@ -45,6 +46,22 @@ function LoginForm() {
           Log In
         </button>
       </form>
+      <br />
+      <hr />
+      <br />
+      <div className="w-full max-w-sm bg-white p-8 rounded shadow-md">
+        <NavLink
+          to="/"
+          className="text-white font-semibold text-lg hover:opacity-75 transition duration-300"
+        >
+          <button
+            className="w-full bg-green-500 text-blue p-2 rounded hover:bg-green-600"
+            type="button"
+          >
+            Register
+          </button>
+        </NavLink>
+      </div>
     </div>
   );
 }
