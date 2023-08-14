@@ -51,7 +51,7 @@ function LoginForm() {
       <br />
       <div className="w-full max-w-sm bg-white p-8 rounded shadow-md">
         <NavLink
-          to="/"
+          to="/register"
           className="text-white font-semibold text-lg hover:opacity-75 transition duration-300"
         >
           <button

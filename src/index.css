@@ -3,6 +3,5 @@
 @tailwind utilities;
 
 .active {
-  color: rgb(226, 110, 43);
-  font-weight: 700;
+  color: rgb(233, 18, 18);
 }
