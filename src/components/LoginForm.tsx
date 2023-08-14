@@ -13,11 +13,12 @@ function LoginForm() {
 
   return (
     <div className="flex flex-col justify-center items-center">
+      <h2 className="text-2xl font-semibold mb-4">Welcom</h2>
       <form className="w-full max-w-sm bg-white p-8 rounded shadow-md" onSubmit={handleSubmit}>
         <h2 className="text-2xl font-semibold mb-4">Login</h2>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-            Email
+            Email*
           </label>
           <input
             className="w-full p-2 border border-gray-300 rounded"
@@ -29,7 +30,7 @@ function LoginForm() {
         </div>
         <div className="mb-6">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-            Password
+            Password*
           </label>
           <input
             className="w-full p-2 border border-gray-300 rounded"
@@ -47,8 +48,7 @@ function LoginForm() {
         </button>
       </form>
       <br />
-      <hr />
-      <br />
+
       <div className="w-full max-w-sm bg-white p-8 rounded shadow-md">
         <NavLink
           to="/register"

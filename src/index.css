@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .active {
-  color: rgb(233, 18, 18);
+  color: rgb(0, 204, 255);
 }
