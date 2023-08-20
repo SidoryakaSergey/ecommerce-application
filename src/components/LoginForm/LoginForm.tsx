@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid';
 import tryToGetToken from '../../fetchs/getToken.ts';
+import loginUser from "../../fetchs/loginCustomer.ts";
 
 type FormValues = {
   email: string;
@@ -36,6 +37,7 @@ function LoginForm() {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         if (typeof response !== 'string' && 'access_token' in response) {
           token = response.access_token;
+          loginUser(data.email, data.password, token);
         }
 
         showSuccessToastMessage();
