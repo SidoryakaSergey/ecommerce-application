@@ -3,8 +3,12 @@ import ReactDOM from 'react-dom/client';
 import { WrappedApp } from './App';
 import './index.css';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <WrappedApp />
-  </React.StrictMode>,
-);
+const rootElement = document.getElementById('root');
+
+if (rootElement !== null) {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <WrappedApp />
+    </React.StrictMode>,
+  );
+}
