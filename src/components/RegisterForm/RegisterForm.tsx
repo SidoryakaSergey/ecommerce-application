@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import registerCustomer from '../../fetchs/registerCustomer.ts';
 
 function RegisterForm() {
   const [email, setEmail] = useState('');
@@ -9,10 +10,8 @@ function RegisterForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log('FirstName:', firsName);
-    // console.log('LastName:', lastName);
-    // console.log('Email:', email);
-    // console.log('Password:', password);
+    // eslint-disable-next-line no-void
+    void registerCustomer(email, firsName, lastName, password).then((result) => result);
   };
 
   return (
