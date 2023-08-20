@@ -18,15 +18,16 @@ function LoginForm() {
   const onSubmit = (data: FormValues) => {
     tryToGetToken(data.email, data.password)
       .then((response) => {
-        let token: string;
+        let token: string = '';
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         if (typeof response !== 'string' && 'access_token' in response) {
           token = response.access_token;
-          console.log(token);
         }
+        return token;
       })
       .catch((error) => {
-        console.log('Произошла ошибка:', error);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+        return error;
       });
   };
 
