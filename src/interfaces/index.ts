@@ -18,3 +18,5 @@ interface Error {
   code: string;
   message: string;
 }
+
+export type ResponseData = AccessTokenResponse | ErrorResponse;
