@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid';
+import tryToGetToken from '../../fetchs/getToken.ts';
 
 type FormValues = {
   email: string;
@@ -15,8 +16,18 @@ function LoginForm() {
   });
 
   const onSubmit = (data: FormValues) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+    tryToGetToken(data.email, data.password)
+      .then((response) => {
+        let token: string;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        if (typeof response !== 'string' && 'access_token' in response) {
+          token = response.access_token;
+          console.log(token);
+        }
+      })
+      .catch((error) => {
+        console.log('Произошла ошибка:', error);
+      });
   };
 
   const [showPassword, setShowPassword] = useState(false);
