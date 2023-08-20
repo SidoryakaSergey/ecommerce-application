@@ -1,3 +1,5 @@
+import getAdminToken from './getAdminToken.ts';
+
 export default async function registerCustomer(
   email: string,
   firstName: string,
@@ -5,8 +7,9 @@ export default async function registerCustomer(
   password: string,
 ) {
   const myHeaders = new Headers();
+  const adminToken = await getAdminToken();
   myHeaders.append('Content-Type', 'application/json');
-  myHeaders.append('Authorization', 'Bearer EbtNfV3cTSTIhy5iBCS7I5REOLXII6QH');
+  myHeaders.append('Authorization', `Bearer ${adminToken}`);
 
   const raw = JSON.stringify({
     email,
