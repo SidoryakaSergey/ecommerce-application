@@ -1,4 +1,4 @@
-import RegisterForm from '../components/RegisterForm';
+import RegisterForm from '../../components/RegisterForm/RegisterForm.tsx';
 
 function RegisterPage() {
   return <RegisterForm />;

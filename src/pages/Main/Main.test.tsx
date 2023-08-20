@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import MainPage from './MainPage';
+import MainPage from './MainPage.tsx';
 
 describe('MainPage', () => {
   it('Renders main content', () => {
