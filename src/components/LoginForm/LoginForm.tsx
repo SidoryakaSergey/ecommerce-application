@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid';
 import tryToGetToken from '../../fetchs/getToken.ts';
-import loginUser from "../../fetchs/loginCustomer.ts";
+import loginUser from '../../fetchs/loginCustomer.ts';
 
 type FormValues = {
   email: string;

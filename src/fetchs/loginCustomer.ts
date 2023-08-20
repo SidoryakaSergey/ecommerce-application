@@ -22,7 +22,7 @@ export default function loginUser(email: string, password: string, bearToken: st
       }
       return response.text();
     })
-    .then((result) => console.log(`Пользователь успешно авторизован`, result))
+    .then((result) => result)
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    .catch((error) => console.log(error.message));
+    .catch((error: Error) => error.message);
 }
