@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import MainPage from './pages/MainPage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import NotFound from './pages/NotFound';
-import Layout from './components/Layout';
+import MainPage from './pages/Main/MainPage.tsx';
+import LoginPage from './pages/LoginPage/LoginPage.tsx';
+import RegisterPage from './pages/Register/RegisterPage.tsx';
+import NotFound from './pages/NotFound/NotFound.tsx';
+import Layout from './components/Loyout/Layout.tsx';
 
 export function App() {
   return (
