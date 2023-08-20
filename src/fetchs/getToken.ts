@@ -1,4 +1,4 @@
-import { AccessTokenResponse, ErrorResponse } from '../interfaces';
+import { ResponseData } from '../interfaces';
 
 export default function tryToGetToken(email: string, password: string) {
   const myHeaders = new Headers();
@@ -25,16 +25,16 @@ export default function tryToGetToken(email: string, password: string) {
     'https://auth.europe-west1.gcp.commercetools.com/oauth/doomsday-store/customers/token',
     requestOptions,
   )
-    .then((response) => response.text())
-    .then((result) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const data: AccessTokenResponse | ErrorResponse = JSON.parse(result);
-      if (!localStorage.getItem('bearToken') && 'access_token' in data) {
-        localStorage.setItem('bearToken', data.access_token);
+    .then((response) => response.json())
+    .then((result: ResponseData) => {
+      if ('error' in result) {
+        throw new Error(result.message);
       }
-      return data;
-    })
-    .catch(() => {
-      return 'Неправильный логин или пароль';
+
+      if (!localStorage.getItem('bearToken')) {
+        localStorage.setItem('bearToken', result.access_token);
+      }
+
+      return result;
     });
 }
