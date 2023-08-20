@@ -1,7 +1,11 @@
 import LoginForm from '../../components/LoginForm/LoginForm.tsx';
 
 function LoginPage() {
-  return <LoginForm />;
+  return (
+    <div className="p-8">
+      <LoginForm />;
+    </div>
+  );
 }
 
 export default LoginPage;
