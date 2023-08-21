@@ -119,7 +119,11 @@ function LoginForm() {
                     {...field}
                   />
                   <button
-                    onClick={() => setShowPassword(!showPassword)}
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowPassword(!showPassword);
+                    }}
                     className="bg-gray-300 p-2 rounded"
                   >
                     {showPassword ? (
