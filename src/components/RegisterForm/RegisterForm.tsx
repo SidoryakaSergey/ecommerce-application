@@ -19,7 +19,7 @@ type RegistrationFormValues = {
   shippingDefault: boolean;
 };
 
-const countries = ['Ukraine', 'Russia', 'Belarus', 'Poland', 'Kazakhstan'];
+const countries = ['UA', 'RU', 'BY', 'PL', 'KZ'];
 
 const postalCodeRegex: { [country: string]: RegExp } = {
   Ukraine: /^\d{5}$/,
@@ -37,15 +37,35 @@ const RegistrationForm = () => {
   });
 
   const onSubmit = async (data: RegistrationFormValues) => {
-    // eslint-disable-next-line no-console
     console.log(data);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    await registerCustomer(data.email, data.firstName, data.lastName, data.password).then(
-      (result) => {
+    try {
+      const result = await registerCustomer(
+        data.email,
+        data.firstName,
+        data.lastName,
+        data.password,
+        data.billingCity,
+        data.billingCountry,
+        data.billingDefault,
+        data.billingPostalCode,
+        data.billingStreet,
+        data.shippingCity,
+        data.shippingCountry,
+        data.shippingDefault,
+        data.shippingPostalCode,
+        data.shippingStreet,
+      );
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const responseData = JSON.parse(result);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (responseData.customer) {
         navigate('/');
         return result;
-      },
-    );
+      }
+      return result;
+    } catch (error) {
+      return null;
+    }
   };
 
   const selectedBillingCountry = watch('billingCountry');
