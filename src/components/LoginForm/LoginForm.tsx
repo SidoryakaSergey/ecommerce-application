@@ -39,10 +39,11 @@ function LoginForm() {
         if (typeof response !== 'string' && 'access_token' in response) {
           token = response.access_token;
           loginUser(data.email, data.password, token);
-          navigate('/');
+          showSuccessToastMessage();
+          setTimeout(() => {
+            navigate('/');
+          }, 2000);
         }
-
-        showSuccessToastMessage();
 
         return token;
       })

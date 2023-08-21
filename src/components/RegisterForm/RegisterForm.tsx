@@ -1,6 +1,20 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
 import registerCustomer from '../../fetchs/registerCustomer.ts';
+import 'react-toastify/dist/ReactToastify.css';
+
+const showSuccessToastMessage = () => {
+  toast.success('You have successfully logged!', {
+    position: toast.POSITION.TOP_RIGHT,
+  });
+};
+
+const showErrorToastMessage = (message: string) => {
+  toast.error(message, {
+    position: toast.POSITION.TOP_RIGHT,
+  });
+};
 
 type RegistrationFormValues = {
   email: string;
@@ -37,7 +51,6 @@ const RegistrationForm = () => {
   });
 
   const onSubmit = async (data: RegistrationFormValues) => {
-    console.log(data);
     try {
       const result = await registerCustomer(
         data.email,
@@ -59,11 +72,15 @@ const RegistrationForm = () => {
       const responseData = JSON.parse(result);
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (responseData.customer) {
-        navigate('/');
+        showSuccessToastMessage();
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
         return result;
       }
       return result;
     } catch (error) {
+      showErrorToastMessage('Ошибка при создании пользователя');
       return null;
     }
   };
@@ -490,6 +507,7 @@ const RegistrationForm = () => {
           </button>
         </NavLink>
       </div>
+      <ToastContainer />
     </div>
   );
 };
