@@ -53,7 +53,8 @@ function LoginForm() {
               required: 'Email is required',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: 'Invalid email address',
+                message:
+                  'Invalid email address, The email address should be include a domain name and use @',
               },
             }}
             render={({ field, fieldState }) => (
@@ -64,7 +65,7 @@ function LoginForm() {
                   {...field}
                 />
                 {fieldState.error && (
-                  <span className="text-red-500">{fieldState.error.message}</span>
+                  <span className="text-sm text-red-500">{fieldState.error.message}</span>
                 )}
               </div>
             )}
@@ -87,7 +88,8 @@ function LoginForm() {
               },
               pattern: {
                 value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]+$/,
-                message: 'Invalid password format',
+                message:
+                  'Password must include at least one uppercase letter, one lowercase letter, one digit, and one special character.',
               },
             }}
             render={({ field, fieldState }) => (
@@ -110,7 +112,7 @@ function LoginForm() {
                   </button>
                 </div>
                 {fieldState.error && (
-                  <span className="text-red-500">{fieldState.error.message}</span>
+                  <span className="text-sm text-red-500">{fieldState.error.message}</span>
                 )}
               </div>
             )}
