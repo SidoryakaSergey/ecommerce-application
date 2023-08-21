@@ -1,6 +1,6 @@
 import { ResponseData } from '../interfaces';
 
-export default function tryToGetToken(email: string, password: string) {
+export default async function tryToGetToken(email: string, password: string) {
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
   myHeaders.append(
@@ -28,6 +28,7 @@ export default function tryToGetToken(email: string, password: string) {
     .then((response) => response.json())
     .then((result: ResponseData) => {
       if ('error' in result) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         throw new Error(result.message);
       }
 

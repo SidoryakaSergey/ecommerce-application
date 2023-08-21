@@ -19,4 +19,11 @@ interface Error {
   message: string;
 }
 
+export interface AccessAdminToken {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  scope: string;
+}
+
 export type ResponseData = AccessTokenResponse | ErrorResponse;
