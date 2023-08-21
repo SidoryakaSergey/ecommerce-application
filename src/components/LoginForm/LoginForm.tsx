@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,6 +26,7 @@ const showErrorToastMessage = (message: string) => {
 };
 
 function LoginForm() {
+  const navigate = useNavigate();
   const { control, handleSubmit, formState } = useForm<FormValues>({
     mode: 'onBlur',
   });
@@ -38,6 +39,7 @@ function LoginForm() {
         if (typeof response !== 'string' && 'access_token' in response) {
           token = response.access_token;
           loginUser(data.email, data.password, token);
+          navigate('/');
         }
 
         showSuccessToastMessage();
