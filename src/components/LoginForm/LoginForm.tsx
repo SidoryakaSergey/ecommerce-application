@@ -2,12 +2,26 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid';
 import tryToGetToken from '../../fetchs/getToken.ts';
 
 type FormValues = {
   email: string;
   password: string;
+};
+
+const showSuccessToastMessage = () => {
+  toast.success('You have successfully logged!', {
+    position: toast.POSITION.TOP_RIGHT,
+  });
+};
+
+const showErrorToastMessage = (message: string) => {
+  toast.error(message, {
+    position: toast.POSITION.TOP_RIGHT,
+  });
 };
 
 function LoginForm() {
@@ -23,11 +37,15 @@ function LoginForm() {
         if (typeof response !== 'string' && 'access_token' in response) {
           token = response.access_token;
         }
+
+        showSuccessToastMessage();
+
         return token;
       })
       .catch((error) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return error;
+        if (error instanceof Error) {
+          showErrorToastMessage(error.message);
+        }
       });
   };
 
@@ -143,6 +161,7 @@ function LoginForm() {
           </button>
         </NavLink>
       </div>
+      <ToastContainer />
     </div>
   );
 }
