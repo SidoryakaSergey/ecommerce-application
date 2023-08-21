@@ -1,4 +1,6 @@
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import registerCustomer from '../../fetchs/registerCustomer.ts';
 import { useForm, Controller } from 'react-hook-form';
 
 type RegistrationFormValues = {
@@ -18,7 +20,23 @@ type RegistrationFormValues = {
   shippingDefault: boolean;
 };
 
-const countries = ['Ukraine', 'Russia', 'Belarus', 'Poland', 'Kazakhstan'];
+function RegisterForm() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [firsName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // eslint-disable-next-line no-void
+    void registerCustomer(email, firsName, lastName, password).then((result) => {
+      navigate('/');
+      return result;
+    });
+  };
+    
+  const countries = ['Ukraine', 'Russia', 'Belarus', 'Poland', 'Kazakhstan'];
 
 const postalCodeRegex: { [country: string]: RegExp } = {
   Ukraine: /^\d{5}$/,
@@ -36,7 +54,6 @@ const RegistrationForm = () => {
   const onSubmit = (data: RegistrationFormValues) => {
     // eslint-disable-next-line no-console
     console.log(data);
-  };
 
   const selectedBillingCountry = watch('billingCountry');
   const postalCodePatternBilling = selectedBillingCountry
