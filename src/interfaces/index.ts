@@ -26,4 +26,21 @@ export interface AccessAdminToken {
   scope: string;
 }
 
+export interface RawData {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  addresses: {
+    country: string;
+    city: string;
+    postalCode: string;
+    streetName: string;
+  }[];
+  defaultShippingAddress?: number;
+  shippingAddresses: number[];
+  defaultBillingAddress?: number;
+  billingAddresses: number[];
+}
+
 export type ResponseData = AccessTokenResponse | ErrorResponse;

@@ -1,7 +1,20 @@
-import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import registerCustomer from '../../fetchs/registerCustomer.ts';
 import { useForm, Controller } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import registerCustomer from '../../fetchs/registerCustomer.ts';
+import 'react-toastify/dist/ReactToastify.css';
+
+const showSuccessToastMessage = () => {
+  toast.success('You have successfully logged!', {
+    position: toast.POSITION.TOP_RIGHT,
+  });
+};
+
+const showErrorToastMessage = (message: string) => {
+  toast.error(message, {
+    position: toast.POSITION.TOP_RIGHT,
+  });
+};
 
 type RegistrationFormValues = {
   email: string;
@@ -20,23 +33,7 @@ type RegistrationFormValues = {
   shippingDefault: boolean;
 };
 
-function RegisterForm() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [firsName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // eslint-disable-next-line no-void
-    void registerCustomer(email, firsName, lastName, password).then((result) => {
-      navigate('/');
-      return result;
-    });
-  };
-    
-  const countries = ['Ukraine', 'Russia', 'Belarus', 'Poland', 'Kazakhstan'];
+const countries = ['UA', 'RU', 'BY', 'PL', 'KZ'];
 
 const postalCodeRegex: { [country: string]: RegExp } = {
   Ukraine: /^\d{5}$/,
@@ -47,13 +44,46 @@ const postalCodeRegex: { [country: string]: RegExp } = {
 };
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
+
   const { control, handleSubmit, formState, watch } = useForm<RegistrationFormValues>({
     mode: 'onBlur',
   });
 
-  const onSubmit = (data: RegistrationFormValues) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+  const onSubmit = async (data: RegistrationFormValues) => {
+    try {
+      const result = await registerCustomer(
+        data.email,
+        data.firstName,
+        data.lastName,
+        data.password,
+        data.billingCity,
+        data.billingCountry,
+        data.billingDefault,
+        data.billingPostalCode,
+        data.billingStreet,
+        data.shippingCity,
+        data.shippingCountry,
+        data.shippingDefault,
+        data.shippingPostalCode,
+        data.shippingStreet,
+      );
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const responseData = JSON.parse(result);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (responseData.customer) {
+        showSuccessToastMessage();
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
+        return result;
+      }
+      return result;
+    } catch (error) {
+      showErrorToastMessage('Ошибка при создании пользователя');
+      return null;
+    }
+  };
 
   const selectedBillingCountry = watch('billingCountry');
   const postalCodePatternBilling = selectedBillingCountry
@@ -477,6 +507,7 @@ const RegistrationForm = () => {
           </button>
         </NavLink>
       </div>
+      <ToastContainer />
     </div>
   );
 };
