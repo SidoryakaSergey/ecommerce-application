@@ -75,8 +75,7 @@ function LoginForm() {
               required: 'Email is required',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message:
-                  'Invalid email address, The email address should be include a domain name and use @',
+                message: 'Invalid email address',
               },
             }}
             render={({ field, fieldState }) => (
@@ -87,7 +86,7 @@ function LoginForm() {
                   {...field}
                 />
                 {fieldState.error && (
-                  <span className="text-sm text-red-500">{fieldState.error.message}</span>
+                  <span className="text-red-500">{fieldState.error.message}</span>
                 )}
               </div>
             )}
@@ -110,8 +109,7 @@ function LoginForm() {
               },
               pattern: {
                 value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]+$/,
-                message:
-                  'Password must include at least one uppercase letter, one lowercase letter, one digit, and one special character.',
+                message: 'Invalid password format',
               },
             }}
             render={({ field, fieldState }) => (
@@ -123,11 +121,7 @@ function LoginForm() {
                     {...field}
                   />
                   <button
-                    type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowPassword(!showPassword);
-                    }}
+                    onClick={() => setShowPassword(!showPassword)}
                     className="bg-gray-300 p-2 rounded"
                   >
                     {showPassword ? (
@@ -138,7 +132,7 @@ function LoginForm() {
                   </button>
                 </div>
                 {fieldState.error && (
-                  <span className="text-sm text-red-500">{fieldState.error.message}</span>
+                  <span className="text-red-500">{fieldState.error.message}</span>
                 )}
               </div>
             )}
