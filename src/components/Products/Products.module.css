@@ -1,0 +1,61 @@
+.mainBox {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.productsBox {
+    display: flex;
+    justify-content: center;
+    
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+
+}
+
+.productCard {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 305px;
+    position: relative;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.productCard__imgWr {
+    height: 322px;
+    width: 100%;
+    margin-bottom: 16px;
+    background-color: #fff;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.productCard__imgWr__imgBox {
+    height: 100%;
+    padding: 16px;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+.productCard__imgWr__imgBox__img {
+    height: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.bookSpanBox {
+    margin-bottom: 8px;
+    color: #2A2B2D;
+    display: flex;
+}
+
+.bookItemMoney {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+    color: #2A2B2D;
+}
+
+
