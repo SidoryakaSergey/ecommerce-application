@@ -1,4 +1,4 @@
-import Product from '../../components/Products/Product.tsx';
+import Product from '../../components/Products/Products.tsx';
 
 function MainPage() {
   return (

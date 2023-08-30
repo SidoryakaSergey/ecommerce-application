@@ -40,7 +40,7 @@ interface MasterVariant {
   assets: [];
 }
 
-interface MasterData {
+export interface MasterData {
   current: {
     name: {
       'en-US': string;
