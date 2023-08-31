@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import MainPage from './pages/Main/MainPage.tsx';
 import LoginPage from './pages/LoginPage/LoginPage.tsx';
@@ -10,6 +10,7 @@ import ProductPage from './pages/ProductPage/ProductPage.tsx';
 
 export function App() {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [redirected, setRedirected] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
   useEffect(() => {
@@ -19,10 +20,10 @@ export function App() {
   }, []);
   useEffect(() => {
     if (isAuth && !redirected) {
-      navigate('/');
+      if (pathname === '/login') navigate('/');
       setRedirected(true);
     }
-  }, [isAuth, navigate, redirected]);
+  }, [isAuth, navigate, redirected, pathname]);
   return (
     <AuthContext.Provider
       value={{
