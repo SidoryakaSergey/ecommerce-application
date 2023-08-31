@@ -8,6 +8,28 @@ const ProductCard = (product: ProductsArr) => {
   function openCard() {
     navigate(`/card/${product.id}`);
   }
+  let prices;
+  if (product.masterData.current.masterVariant.prices[0].discounted) {
+    prices = (
+      <div className={`${styles.bookSpanBox}`}>
+        <span className={styles.bookItemMoney}>
+          {product.masterData.current.masterVariant.prices[0].discounted.value.centAmount / 100}$
+          &nbsp;
+        </span>
+        <span className={`${styles.bookItemMoney} ${styles.bookItemMoneyWithDiscount}`}>
+          {product.masterData.current.masterVariant.prices[0].value.centAmount / 100}$
+        </span>
+      </div>
+    );
+  } else {
+    prices = (
+      <div className={styles.bookSpanBox}>
+        <span className={styles.bookItemMoney}>
+          {product.masterData.current.masterVariant.prices[0].value.centAmount / 100}$
+        </span>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.productCard} onClick={openCard}>
@@ -23,11 +45,7 @@ const ProductCard = (product: ProductsArr) => {
         </div>
       </div>
       <div>
-        <div className={styles.bookSpanBox}>
-          <span className={styles.bookItemMoney}>
-            {product.masterData.current.masterVariant.prices[0].value.centAmount / 100}$
-          </span>
-        </div>
+        {prices}
         <div className={styles.bookSpanBox}>
           <a>
             <span className={styles.bookItemMoney} style={{ fontSize: '14px' }}>

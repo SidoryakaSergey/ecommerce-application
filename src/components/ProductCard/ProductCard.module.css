@@ -7,6 +7,7 @@
   position: relative;
   box-sizing: border-box;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .productCard__imgWr {
@@ -42,4 +43,14 @@
   line-height: 24px;
   font-weight: 600;
   color: #2A2B2D;
+}
+.bookItemMoneyWithDiscount {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+@media (hover: hover) {
+  .productCard {
+    
+  }
 }

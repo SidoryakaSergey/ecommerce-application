@@ -16,6 +16,14 @@ interface Price {
     centAmount: number;
     fractionDigits: number;
   };
+  discounted?: {
+    value: {
+      type: string;
+      currencyCode: string;
+      centAmount: number;
+      fractionDigits: number;
+    };
+  };
 }
 
 interface Image {

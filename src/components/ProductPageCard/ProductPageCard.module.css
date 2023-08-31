@@ -6,8 +6,10 @@
 .pageBox {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   padding: 2rem;
+  margin: 0 auto;
+  max-width: 1440px;
 }
 
 .fontAdaptiveName {
@@ -44,4 +46,16 @@
 
 .annotaion {
   padding: 15px;
+}
+
+@media (max-width: 800px) {
+  .descriptionBox {
+    display: flex;
+    gap: 50px;
+    flex-direction: column;
+    min-width: 350px;
+    margin: 20px 0;
+    width: 100%;
+    padding: 0 15px;
+  }
 }
