@@ -8,8 +8,7 @@ import { showErrorToastMessage, showSuccessToastMessage } from '../../utils/toas
 import tryToGetToken from '../../fetchs/getToken.ts';
 import loginUser from '../../fetchs/loginCustomer.ts';
 
-import InputMail from '../UI/InputMail.tsx';
-import InputPassword from '../UI/InputPassword.tsx';
+import { InputMail, InputPassword } from '../UI/Inputs';
 
 type FormValues = {
   email: string;
