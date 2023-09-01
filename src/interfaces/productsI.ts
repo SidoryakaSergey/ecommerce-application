@@ -107,8 +107,12 @@ export interface ProductsArr {
     id: string;
   };
   masterData: MasterData;
+  masterVariant?: MasterVariant;
+  name?: {
+    'en-US': string;
+  };
   priceMode: string;
-  lastVariantId: number;
+  lastVariantId?: number;
 }
 
 export interface ResponseProducts {
@@ -118,3 +122,5 @@ export interface ResponseProducts {
   total: number;
   results: ProductsArr[];
 }
+
+

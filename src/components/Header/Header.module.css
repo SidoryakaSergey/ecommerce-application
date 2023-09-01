@@ -1,0 +1,29 @@
+:root {
+  --caput-mortuum: #633427ff;
+  --caput-mortuum-2: #4d2f27ff;
+  --taupe: #46403dff;
+  --rust: #816b62;
+  --van-dyke: #3c2d29ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 50px;
+  background: var(--van-dyke);
+  color: var(--rust)
+}
+
+.logoContainer {
+  gap: 15px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  border: none;
+}
+
