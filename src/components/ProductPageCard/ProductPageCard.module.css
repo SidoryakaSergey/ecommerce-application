@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+  font-family: "Inter var", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.pageBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+.fontAdaptiveName {
+  font-size: calc(30px + 14 * ((100vw - 320px) / (1280 - 320)));
+}
+.fontAdaptiveAutor {
+  font-size: calc(17px + 10 * ((100vw - 320px) / (1280 - 320)))
+}
+
+.imageBox {
+  min-width: 350px;
+  width: 50%;
+  height: 50vh;
+  max-height: 500px;
+}
+
+.imageWrapper {
+  height: 100%;
+}
+
+.image {
+  margin: 0 auto;
+  height: 100%;
+}
+
+.descriptionBox {
+  display: flex;
+  gap: 50px;
+  flex-direction: column;
+  min-width: 350px;
+  width: 30%;
+  padding: 0 15px;
+}
+
+.annotaion {
+  padding: 15px;
+}
+
+@media (max-width: 800px) {
+  .descriptionBox {
+    display: flex;
+    gap: 50px;
+    flex-direction: column;
+    min-width: 350px;
+    margin: 20px 0;
+    width: 100%;
+    padding: 0 15px;
+  }
+}

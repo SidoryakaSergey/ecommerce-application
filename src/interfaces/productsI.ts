@@ -16,6 +16,14 @@ interface Price {
     centAmount: number;
     fractionDigits: number;
   };
+  discounted?: {
+    value: {
+      type: string;
+      currencyCode: string;
+      centAmount: number;
+      fractionDigits: number;
+    };
+  };
 }
 
 interface Image {
@@ -40,7 +48,7 @@ interface MasterVariant {
   assets: [];
 }
 
-interface MasterData {
+export interface MasterData {
   current: {
     name: {
       'en-US': string;
