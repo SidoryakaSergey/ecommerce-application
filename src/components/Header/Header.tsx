@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserCircleIcon } from '@heroicons/react/24/outline';
-
+import UserAccountHeader from './UserAccountHeader';
 import logoPng from '../../assets/logo/logo.png';
 
 const Header: React.FC = () => {
@@ -9,11 +10,7 @@ const Header: React.FC = () => {
     <header className="bg-blue-500 p-4 flex items-center justify-center">
       <div className="container flex">
         <div>
-          <img
-            src={logoPng}
-            alt="Пример изображения"
-            className="w-40 4-20 rounded-lg border-2 border-blue-500"
-          />
+          <img src={logoPng} alt="Logo" className="w-40 4-20 rounded-lg border-2 border-blue-500" />
         </div>
         <div className="container flex flex-col items-center justify-center">
           <h1 className="text-xl">Doomsday store</h1>
@@ -40,6 +37,7 @@ const Header: React.FC = () => {
           <UserCircleIcon className="w-10 h-10 text-white hover:text-gray-400" />
         </NavLink>
       </div>
+      <UserAccountHeader />
     </header>
   );
 };

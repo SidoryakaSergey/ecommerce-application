@@ -28,10 +28,8 @@ export default async function tryToGetToken(email: string, password: string) {
     .then((response) => response.json())
     .then((result: ResponseData) => {
       if ('error' in result) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         throw new Error(result.message);
       }
-
       if (!localStorage.getItem('bearToken')) {
         localStorage.setItem('bearToken', result.access_token);
       }
