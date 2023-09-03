@@ -122,5 +122,3 @@ export interface ResponseProducts {
   total: number;
   results: ProductsArr[];
 }
-
-

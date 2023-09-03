@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { ProductsArr } from '../../interfaces/productsI.ts';
 import getProduct from '../../fetchs/getProduct.ts';
 import styles from './ProductPageCard.module.css';
 import DescLabel from './DescLabel/DescLabel.tsx';
 import MyButton from '../Button/MyButton.tsx';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 interface ProductPageCardProps {
   id: string;
@@ -28,16 +34,33 @@ const ProductPageCard = (props: ProductPageCardProps) => {
   }, [id]);
 
   if (product) {
+    const { images } = product.masterData.current.masterVariant;
     return (
       <div className={styles.pageBox}>
         <div className={styles.imageBox}>
-          <div className={styles.imageWrapper}>
-            <img
-              className={styles.image}
-              src={product.masterData.current.masterVariant.images[0].url}
-              alt={'cover'}
-            />
-          </div>
+          <Swiper
+            grabCursor={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Autoplay, Pagination, Navigation]}
+            className={styles.imageWrapper}
+            spaceBetween={50}
+            slidesPerView={1}
+            onSlideChange={() => console.log('slide change')}
+            onSwiper={(swiper) => console.log(swiper)}
+          >
+            {images.map((image, index) => (
+              <SwiperSlide key={index}>
+                <img className={styles.image} src={image.url} alt={'cover'} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
         <div className={styles.descriptionBox}>
           <div>

@@ -7,9 +7,9 @@ import NotFound from './pages/NotFound/NotFound.tsx';
 import Layout from './components/Loyout/Layout.tsx';
 import AuthContext from './context/authContext.ts';
 import ProductPage from './pages/ProductPage/ProductPage.tsx';
-import ThrillersPage from "./pages/Catalog/ThrillersPage/ThrillersPage.tsx";
-import EroticaPage from "./pages/Catalog/EroticaPage/EroticaPage.tsx";
-import HorrorsPage from "./pages/Catalog/HorrorsPage/HorrorsPage.tsx";
+import ThrillersPage from './pages/Catalog/ThrillersPage/ThrillersPage.tsx';
+import EroticaPage from './pages/Catalog/EroticaPage/EroticaPage.tsx';
+import HorrorsPage from './pages/Catalog/HorrorsPage/HorrorsPage.tsx';
 
 export function App() {
   const navigate = useNavigate();

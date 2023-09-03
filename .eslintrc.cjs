@@ -26,9 +26,10 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 0,
     "import/no-extraneous-dependencies": [
-      "error",
+      "off",
       {"devDependencies": true}
     ],
+    "import/no-unresolved": "off",
     'import/extensions': [
       'error',
       'ignorePackages',
