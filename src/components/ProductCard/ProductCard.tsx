@@ -4,6 +4,7 @@ import { ProductsArr } from '../../interfaces/productsI.ts';
 
 const ProductCard = (product: ProductsArr) => {
   const navigate = useNavigate();
+    
   let productMasterVarian;
   let productName;
   if (product.masterVariant && product.name) {
