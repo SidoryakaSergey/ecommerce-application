@@ -4,6 +4,7 @@ import MainPage from './pages/Main/MainPage.tsx';
 import LoginPage from './pages/LoginPage/LoginPage.tsx';
 import RegisterPage from './pages/Register/RegisterPage.tsx';
 import NotFound from './pages/NotFound/NotFound.tsx';
+import UserPage from './pages/UserPage/UserPage.tsx';
 import Layout from './components/Loyout/Layout.tsx';
 import AuthContext from './context/authContext.ts';
 import ProductPage from './pages/ProductPage/ProductPage.tsx';
@@ -20,7 +21,7 @@ export function App() {
   }, []);
   useEffect(() => {
     if (isAuth && !redirected) {
-      if (pathname === '/login') navigate('/');
+      if (pathname === '/login' || pathname === '/register') navigate('/');
       setRedirected(true);
     }
   }, [isAuth, navigate, redirected, pathname]);
@@ -36,6 +37,7 @@ export function App() {
           <Route index element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/user" element={<UserPage />} />
           <Route path="/card/:id" element={<ProductPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
