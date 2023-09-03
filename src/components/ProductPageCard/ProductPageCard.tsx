@@ -7,10 +7,11 @@ import { ProductsArr } from '../../interfaces/productsI.ts';
 import getProduct from '../../fetchs/getProduct.ts';
 import styles from './ProductPageCard.module.css';
 import DescLabel from './DescLabel/DescLabel.tsx';
-import MyButton from '../Button/MyButton.tsx';
+import byttonStyle from './button.module.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import Loading from '../Loading/Loading.tsx';
 
 interface ProductPageCardProps {
   id: string;
@@ -45,6 +46,8 @@ const ProductPageCard = (props: ProductPageCardProps) => {
     },
   };
 
+  let prices;
+
   const openModal = (index: number) => {
     setSelectedImageIndex(index);
     setShowModal(true);
@@ -55,6 +58,32 @@ const ProductPageCard = (props: ProductPageCardProps) => {
   };
 
   if (product) {
+    if (product.masterData.current.masterVariant.prices[0].discounted) {
+      prices = (
+        <button
+          className={byttonStyle.myButton}
+          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        >
+          <div className={`${styles.bookSpanBox}`}>
+            <span className={styles.bookItemMoney}>
+              {product.masterData.current.masterVariant.prices[0].discounted.value.centAmount / 100}
+              $ &nbsp;
+            </span>
+            <span className={`${styles.bookItemMoney} ${styles.bookItemMoneyWithDiscount}`}>
+              {product.masterData.current.masterVariant.prices[0].value.centAmount / 100}$
+            </span>
+          </div>
+        </button>
+      );
+    } else {
+      prices = (
+        <div className={styles.bookSpanBox}>
+          <span className={styles.bookItemMoney}>
+            {product.masterData.current.masterVariant.prices[0].value.centAmount / 100}$
+          </span>
+        </div>
+      );
+    }
     const { images } = product.masterData.current.masterVariant;
 
     return (
@@ -162,9 +191,7 @@ const ProductPageCard = (props: ProductPageCardProps) => {
               justifyContent: 'center',
             }}
           >
-            <MyButton
-              value={product.masterData.current.masterVariant.prices[0].value.centAmount / 100}
-            />
+            {prices}
           </div>
         </div>
         <div className={styles.annotaion}>
@@ -173,7 +200,7 @@ const ProductPageCard = (props: ProductPageCardProps) => {
       </div>
     );
   }
-  return <div>Wait</div>;
+  return <Loading />;
 };
 
 export default ProductPageCard;

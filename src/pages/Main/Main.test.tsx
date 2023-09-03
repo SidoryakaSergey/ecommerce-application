@@ -7,11 +7,10 @@ describe('MainPage', () => {
     // ARRANGE
     render(<MainPage />);
 
-    // EXPECT
-    expect(
-      screen.getByRole('heading', {
-        level: 1,
-      }),
-    ).toHaveTextContent('Main');
+    // ACT
+    const incrediblesPosterImg = screen.getAllByAltText(/banner1/i);
+
+    // ASSERT
+    expect(incrediblesPosterImg[0]).toBeInTheDocument();
   });
 });

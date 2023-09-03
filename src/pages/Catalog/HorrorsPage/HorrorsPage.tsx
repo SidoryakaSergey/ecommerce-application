@@ -40,7 +40,6 @@ function HorrorsPage() {
         </Carousel>
       </div>
       <Products {...productsProps} />
-      <h1>Main</h1>
     </div>
   );
 }
