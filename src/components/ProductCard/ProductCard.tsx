@@ -5,19 +5,28 @@ import { ProductsArr } from '../../interfaces/productsI.ts';
 const ProductCard = (product: ProductsArr) => {
   const navigate = useNavigate();
 
+  let productMasterVarian;
+  let productName;
+  if (product.masterVariant && product.name) {
+    productMasterVarian = product.masterVariant;
+    productName = product.name['en-US'];
+  } else {
+    productMasterVarian = product.masterData.current.masterVariant;
+    productName = product.masterData.current.name['en-US'];
+  }
+
   function openCard() {
     navigate(`/card/${product.id}`);
   }
   let prices;
-  if (product.masterData.current.masterVariant.prices[0].discounted) {
+  if (productMasterVarian.prices[0].discounted) {
     prices = (
       <div className={`${styles.bookSpanBox}`}>
         <span className={styles.bookItemMoney}>
-          {product.masterData.current.masterVariant.prices[0].discounted.value.centAmount / 100}$
-          &nbsp;
+          {productMasterVarian.prices[0].discounted.value.centAmount / 100}$ &nbsp;
         </span>
         <span className={`${styles.bookItemMoney} ${styles.bookItemMoneyWithDiscount}`}>
-          {product.masterData.current.masterVariant.prices[0].value.centAmount / 100}$
+          {productMasterVarian.prices[0].value.centAmount / 100}$
         </span>
       </div>
     );
@@ -25,7 +34,7 @@ const ProductCard = (product: ProductsArr) => {
     prices = (
       <div className={styles.bookSpanBox}>
         <span className={styles.bookItemMoney}>
-          {product.masterData.current.masterVariant.prices[0].value.centAmount / 100}$
+          {productMasterVarian.prices[0].value.centAmount / 100}$
         </span>
       </div>
     );
@@ -38,8 +47,8 @@ const ProductCard = (product: ProductsArr) => {
           <a>
             <img
               className={styles.productCard__imgWr__imgBox__img}
-              src={product.masterData.current.masterVariant.images[0].url}
-              alt={product.masterData.current.masterVariant.images[0].label}
+              src={productMasterVarian.images[0].url}
+              alt={productMasterVarian.images[0].label}
             />
           </a>
         </div>
@@ -48,15 +57,15 @@ const ProductCard = (product: ProductsArr) => {
         {prices}
         <div className={styles.bookSpanBox}>
           <a>
-            <span className={styles.bookItemMoney} style={{ fontSize: '14px' }}>
-              {product.masterData.current.name['en-US']}
+            <span className={styles.bookName} style={{ fontSize: '14px' }}>
+              {productName}
             </span>
           </a>
         </div>
         <div className={styles.bookSpanBox}>
           <a>
             <span className={styles.bookItemMoney} style={{ color: '#949599', fontSize: '14px' }}>
-              {product.masterData.current.masterVariant.attributes[0].value}
+              {productMasterVarian.attributes[0].value}
             </span>
           </a>
         </div>

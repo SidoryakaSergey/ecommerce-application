@@ -4,23 +4,36 @@ import { ProductsArr, ResponseProducts } from '../../interfaces/productsI.ts';
 import styles from './Products.module.css';
 import ProductCard from '../ProductCard/ProductCard.tsx';
 
-const Products: React.FC = () => {
-  const [products, setProducts] = useState<ProductsArr[]>([]);
+type ProductsProps = {
+  catalogValue?: string;
+};
 
+const Products: React.FC<ProductsProps> = (props) => {
+  const [products, setProducts] = useState<ProductsArr[]>([]);
   useEffect(() => {
     const fetchProducts = () => {
-      getProducts()
-        .then((response: ResponseProducts) => {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
-          setProducts(response.results);
-        })
-        .catch((error: Error) => {
-          return error.message;
-        });
+      if (props.catalogValue) {
+        getProducts(props.catalogValue)
+          .then((response: ResponseProducts) => {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
+            setProducts(response.results);
+          })
+          .catch((error: Error) => {
+            return error.message;
+          });
+      } else {
+        getProducts()
+          .then((response: ResponseProducts) => {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
+            setProducts(response.results);
+          })
+          .catch((error: Error) => {
+            return error.message;
+          });
+      }
     };
-
     fetchProducts();
-  }, []);
+  }, [props.catalogValue]);
 
   return (
     <div className={styles.mainBox}>
@@ -41,6 +54,8 @@ const Products: React.FC = () => {
             masterData={product.masterData}
             priceMode={product.priceMode}
             lastVariantId={product.lastVariantId}
+            masterVariant={product.masterVariant}
+            name={product.name}
           />
         ))}
       </div>

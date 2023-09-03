@@ -8,6 +8,9 @@ import UserPage from './pages/UserPage/UserPage.tsx';
 import Layout from './components/Loyout/Layout.tsx';
 import AuthContext from './context/authContext.ts';
 import ProductPage from './pages/ProductPage/ProductPage.tsx';
+import ThrillersPage from './pages/Catalog/ThrillersPage/ThrillersPage.tsx';
+import EroticaPage from './pages/Catalog/EroticaPage/EroticaPage.tsx';
+import HorrorsPage from './pages/Catalog/HorrorsPage/HorrorsPage.tsx';
 
 export function App() {
   const navigate = useNavigate();
@@ -39,6 +42,9 @@ export function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/user" element={<UserPage />} />
           <Route path="/card/:id" element={<ProductPage />} />
+          <Route path="/thrillers" element={<ThrillersPage />} />
+          <Route path="/erotica" element={<EroticaPage />} />
+          <Route path="/horrors" element={<HorrorsPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

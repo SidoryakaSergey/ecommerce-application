@@ -1,17 +1,29 @@
 import { useEffect, useState } from 'react';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import Modal from 'react-modal';
 import { ProductsArr } from '../../interfaces/productsI.ts';
 import getProduct from '../../fetchs/getProduct.ts';
 import styles from './ProductPageCard.module.css';
 import DescLabel from './DescLabel/DescLabel.tsx';
 import MyButton from '../Button/MyButton.tsx';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 interface ProductPageCardProps {
   id: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
+Modal.setAppElement('body');
+
 const ProductPageCard = (props: ProductPageCardProps) => {
   const { id } = props;
   const [product, setProduct] = useState<ProductsArr>();
+  const [showModal, setShowModal] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   useEffect(() => {
     const fetchProducts = () => {
@@ -27,18 +39,84 @@ const ProductPageCard = (props: ProductPageCardProps) => {
     fetchProducts();
   }, [id]);
 
+  const customStyles = {
+    content: {
+      maxHeight: '70vh',
+    },
+  };
+
+  const openModal = (index: number) => {
+    setSelectedImageIndex(index);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   if (product) {
+    const { images } = product.masterData.current.masterVariant;
+
     return (
       <div className={styles.pageBox}>
         <div className={styles.imageBox}>
-          <div className={styles.imageWrapper}>
-            <img
-              className={styles.image}
-              src={product.masterData.current.masterVariant.images[0].url}
-              alt={'cover'}
-            />
-          </div>
+          {!showModal ? (
+            <Swiper
+              style={{ height: '100%' }}
+              grabCursor={true}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              navigation={true}
+              modules={[Autoplay, Pagination, Navigation]}
+              className={styles.imageWrapper}
+              spaceBetween={50}
+              slidesPerView={1}
+            >
+              {images.map((image, index) => (
+                <SwiperSlide
+                  key={index}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                >
+                  <img
+                    onClick={() => openModal(index)}
+                    className={styles.image}
+                    src={image.url}
+                    alt={'cover'}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : null}
         </div>
+        <Modal style={customStyles} isOpen={showModal} onRequestClose={closeModal}>
+          <Swiper
+            style={{ height: '100%' }}
+            grabCursor={true}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Autoplay, Pagination, Navigation]}
+            className={styles.modalSwiper}
+            spaceBetween={50}
+            slidesPerView={1}
+            initialSlide={selectedImageIndex}
+          >
+            {images.map((image, index) => (
+              <SwiperSlide
+                key={index}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              >
+                <img className={`${styles.moduleImg}`} src={image.url} alt={'cover'} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </Modal>
         <div className={styles.descriptionBox}>
           <div>
             <div>

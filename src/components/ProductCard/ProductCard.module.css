@@ -1,3 +1,11 @@
+:root {
+  --caput-mortuum: #633427ff;
+  --caput-mortuum-2: #4d2f27ff;
+  --taupe: #46403dff;
+  --rust: #a94d29ff;
+  --van-dyke: #3c2d29ff;
+}
+
 
 .productCard {
   -webkit-border-radius: 5px;
@@ -8,6 +16,7 @@
   box-sizing: border-box;
   flex-shrink: 0;
   cursor: pointer;
+  transition: .3s;
 }
 
 .productCard__imgWr {
@@ -49,8 +58,20 @@
   text-decoration-thickness: 2px;
 }
 
+.bookName {
+  color: #2A2B2D;
+  transition: .3s;
+}
+
 @media (hover: hover) {
-  .productCard {
-    
+  .productCard:hover {
+    scale: 1.05;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+
+  .productCard:hover .bookName {
+    color: var(--van-dyke)
   }
 }
+
+
