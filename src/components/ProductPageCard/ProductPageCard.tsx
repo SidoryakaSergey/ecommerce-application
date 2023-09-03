@@ -112,11 +112,7 @@ const ProductPageCard = (props: ProductPageCardProps) => {
                 key={index}
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
-                <img
-                  className={`${styles.moduleImg}`}
-                  src={image.url}
-                  alt={'cover'}
-                />
+                <img className={`${styles.moduleImg}`} src={image.url} alt={'cover'} />
               </SwiperSlide>
             ))}
           </Swiper>
