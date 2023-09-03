@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import AuthContext from '../../context/authContext';
 // import UserData from '../../interfaces/UserData';
 // import getDataCustomer from '../../fetchs/getDataCustomer';
@@ -16,16 +16,20 @@ export default function UserAccountHeader() {
   return (
     <>
       {isAuth ? (
-        // Пользователь аутентифицирован, показываем кнопку "User"
-        <Link to="/user">
-          <button>User</button>
-          <button>reLogin</button>
-        </Link>
+        // Пользователь аутентифициро-ван, показываем кнопку "User"
+        <div style={{ display: 'flex', gap: '15px' }}>
+          <NavLink to="/user">
+            <button>User</button>
+          </NavLink>
+          <NavLink to="/login">
+            <button>reLogin</button>
+          </NavLink>
+        </div>
       ) : (
         // Пользователь не аутентифицирован, показываем кнопку "Login"
-        <Link to="/login">
+        <NavLink to="/login">
           <button>Login</button>
-        </Link>
+        </NavLink>
       )}
     </>
   );

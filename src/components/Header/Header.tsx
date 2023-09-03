@@ -71,13 +71,7 @@ const Header: React.FC = () => {
           className="space-x-4"
           style={{ display: 'flex', alignItems: 'center', fontWeight: 'bold', color: '#a94d29ff' }}
         >
-          <NavLink
-            style={{ color: '#a94d29ff' }}
-            to="/login"
-            className="text-white hover:opacity-75 transition duration-300"
-          >
-            Login
-          </NavLink>
+          <UserAccountHeader />
           <div>
             <NavLink
               style={{ color: '#a94d29ff' }}
@@ -87,7 +81,6 @@ const Header: React.FC = () => {
               <UserCircleIcon className="w-10 h-10 text-white hover:text-gray-400" />
             </NavLink>
           </div>
-          <UserAccountHeader />
         </div>
       </nav>
     </header>
