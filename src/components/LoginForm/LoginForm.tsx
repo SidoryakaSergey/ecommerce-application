@@ -1,15 +1,17 @@
+import { useContext, Dispatch, SetStateAction } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import AuthContext from '../../context/authContext';
 
 import { showErrorToastMessage, showSuccessToastMessage } from '../../utils/toastFuncs.tsx';
 
 import tryToGetToken from '../../fetchs/getToken.ts';
 import loginUser from '../../fetchs/loginCustomer.ts';
 
-import InputMail from '../UI/InputMail.tsx';
-import InputPassword from '../UI/InputPassword.tsx';
+import { InputMail, InputPassword } from '../UI/Inputs';
 
 type FormValues = {
   email: string;
@@ -23,6 +25,12 @@ function LoginForm() {
   });
   const { handleSubmit, formState } = methods;
 
+  const authContext = useContext(AuthContext);
+  let setIsAuth: Dispatch<SetStateAction<boolean>>;
+  if (authContext !== null) {
+    setIsAuth = authContext.setIsAuth;
+  }
+
   const onSubmit: SubmitHandler<FormValues> = (data: FormValues) => {
     tryToGetToken(data.email, data.password)
       .then((response) => {
@@ -30,7 +38,7 @@ function LoginForm() {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         if (typeof response !== 'string' && 'access_token' in response) {
           token = response.access_token;
-          loginUser(data.email, data.password, token);
+          loginUser(data.email, data.password, token, setIsAuth);
           showSuccessToastMessage();
           setTimeout(() => {
             navigate('/');

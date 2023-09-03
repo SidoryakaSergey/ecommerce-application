@@ -1,4 +1,11 @@
-export default function loginUser(email: string, password: string, bearToken: string) {
+import { Dispatch, SetStateAction } from 'react';
+
+export default function loginUser(
+  email: string,
+  password: string,
+  bearToken: string,
+  setIsAuth: Dispatch<SetStateAction<boolean>>,
+) {
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
   myHeaders.append('Authorization', `Bearer ${bearToken}`);
@@ -22,7 +29,11 @@ export default function loginUser(email: string, password: string, bearToken: st
       }
       return response.text();
     })
-    .then((result) => result)
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    .then((result) => {
+      // const obj = JSON.parse(result);
+      // console.log('🚀 obj:', obj);
+      setIsAuth(true);
+      return result;
+    })
     .catch((error: Error) => error.message);
 }

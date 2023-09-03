@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { UserCircleIcon } from '@heroicons/react/24/outline';
 import Hamburger from 'hamburger-react';
 import styles from './Header.module.css';
-
+import UserAccountHeader from './UserAccountHeader';
 import logoPng from '../../assets/logo/logo.png';
 import BurgerMenu from '../BurgerMenu/BurgerMenu.tsx';
 
@@ -87,6 +87,7 @@ const Header: React.FC = () => {
               <UserCircleIcon className="w-10 h-10 text-white hover:text-gray-400" />
             </NavLink>
           </div>
+          <UserAccountHeader />
         </div>
       </nav>
     </header>
