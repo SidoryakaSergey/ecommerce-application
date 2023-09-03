@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound/NotFound.tsx';
 import UserPage from './pages/UserPage/UserPage.tsx';
 import Layout from './components/Loyout/Layout.tsx';
 import AuthContext from './context/authContext.ts';
+import ProductPage from './pages/ProductPage/ProductPage.tsx';
 
 export function App() {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ export function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/user" element={<UserPage />} />
+          <Route path="/card/:id" element={<ProductPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

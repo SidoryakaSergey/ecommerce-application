@@ -1,0 +1,11 @@
+.labelBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.labelName {
+  color:#707783;
+}
+.labelValue {
+  color:#464958;
+}
