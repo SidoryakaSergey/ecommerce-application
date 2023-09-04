@@ -5,14 +5,15 @@ import { ToastContainer } from 'react-toastify';
 import { showErrorToastMessage, showSuccessToastMessage } from '../../utils/toastFuncs.tsx';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { InputText, InputMail, InputPassword, InputPostalCode } from '../../components/UI/Inputs';
+import { InputText, InputMail, InputPostalCode } from '../../components/UI/Inputs';
 import CheckboxAdress from '../../components/UI/Checkbocks/CheckboxAdress.tsx';
 import SelectCountry from '../../components/UI/Selects/SelectCountry.tsx';
 
-import UserData from '../../interfaces/UserData.ts';
+import UserData, { UserInfo } from '../../interfaces/UserData.ts';
 import getDataCustomer from '../../fetchs/getDataCustomer.ts';
 
 import { getLocalStorage } from '../../utils/localStorageFuncs.ts';
+import updateCustomer from '../../fetchs/updateCustomer.ts';
 
 type RegistrationFormValues = {
   email: string;
@@ -68,10 +69,25 @@ function UserPage() {
     setSelectedShippingCountry(country);
   };
 
-  const onSubmit = () => {
-    setDisabled(true);
-    showSuccessToastMessage('Saved!');
-    // console.log('Save->', data);
+  const onSubmit = (userInfoData: UserInfo) => {
+    let shippingId: string;
+    let billingId: string;
+    let userId: string;
+    let userVersion: number;
+    if (userData) {
+      billingId = userData.addresses[1].id;
+      shippingId = userData.addresses[0].id;
+      userId = userData.id;
+      userVersion = userData.version;
+      setDisabled(true);
+      // eslint-disable-next-line no-void
+      void updateCustomer(userId, userVersion, userInfoData, billingId, shippingId).then(
+        (response: UserData) => {
+          showSuccessToastMessage('Saved!');
+          setUserData(response);
+        },
+      );
+    }
   };
 
   return (
@@ -105,7 +121,6 @@ function UserPage() {
                 disabled={disabled}
               />
               <InputMail email={userData.email} disabled={disabled} />
-              <InputPassword password="" disabled={disabled} />
               <div className="flex justify-center">
                 <h2>Billing Adress</h2>
               </div>
