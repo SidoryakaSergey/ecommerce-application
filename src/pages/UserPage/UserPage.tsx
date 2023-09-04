@@ -15,6 +15,8 @@ import getDataCustomer from '../../fetchs/getDataCustomer.ts';
 import { getLocalStorage } from '../../utils/localStorageFuncs.ts';
 import updateCustomer from '../../fetchs/updateCustomer.ts';
 
+import PasswordChangeForm from '../../components/UI/Inputs/PasswordChangeForm.tsx';
+
 type RegistrationFormValues = {
   email: string;
   password: string;
@@ -67,6 +69,13 @@ function UserPage() {
 
   const handleShippingCountryChange = (country: string) => {
     setSelectedShippingCountry(country);
+  };
+  // data: {
+  //   oldPassword: string;
+  //   newPassword: string;
+  // }
+  const onSubmitPasswordChange = () => {
+    // console.log('password:', data);
   };
 
   const onSubmit = (userInfoData: UserInfo) => {
@@ -213,7 +222,9 @@ function UserPage() {
           )}
         </FormProvider>
       </div>
-
+      <br />
+      <PasswordChangeForm onSubmit={onSubmitPasswordChange} />
+      <br />
       <ToastContainer />
     </div>
   );
