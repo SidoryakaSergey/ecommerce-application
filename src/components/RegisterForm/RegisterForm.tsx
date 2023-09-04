@@ -76,7 +76,7 @@ const RegistrationForm = () => {
       const responseData = JSON.parse(result);
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (responseData.customer) {
-        showSuccessToastMessage();
+        showSuccessToastMessage('Successful!');
         setTimeout(() => {
           navigate('/');
         }, 2000);

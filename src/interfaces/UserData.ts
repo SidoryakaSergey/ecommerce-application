@@ -34,3 +34,20 @@ interface Address {
   city: string;
   country: string;
 }
+
+
+export interface UserInfo {
+  billingCity: string;
+  billingCountry: string;
+  billingDefault: boolean;
+  billingPostalCode: string;
+  billingStreet: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  shippingCity: string;
+  shippingCountry: string;
+  shippingDefault: boolean;
+  shippingPostalCode: string;
+  shippingStreet: string;
+}
