@@ -16,6 +16,7 @@ import { getLocalStorage } from '../../utils/localStorageFuncs.ts';
 import updateCustomer from '../../fetchs/updateCustomer.ts';
 
 import PasswordChangeForm from '../../components/UI/Inputs/PasswordChangeForm.tsx';
+import updatePassword from '../../fetchs/updatePassword.ts';
 
 type RegistrationFormValues = {
   email: string;
@@ -74,8 +75,22 @@ function UserPage() {
   //   oldPassword: string;
   //   newPassword: string;
   // }
-  const onSubmitPasswordChange = () => {
-    // console.log('password:', data);
+
+  const onSubmitPasswordChange = (data: { newPassword: string; oldPassword: string }) => {
+    let id: string;
+    let version: number;
+    if (userData) {
+      id = userData.id;
+      version = userData.version;
+      updatePassword(id, version, data.oldPassword, data.newPassword)
+        .then((response: UserData) => {
+          showSuccessToastMessage('Saved!');
+          setUserData(response);
+        })
+        .catch((error: Error) => {
+          showErrorToastMessage(`Error: ${error.message}`);
+        });
+    }
   };
 
   const onSubmit = (userInfoData: UserInfo) => {
@@ -89,13 +104,14 @@ function UserPage() {
       userId = userData.id;
       userVersion = userData.version;
       setDisabled(true);
-      // eslint-disable-next-line no-void
-      void updateCustomer(userId, userVersion, userInfoData, billingId, shippingId).then(
-        (response: UserData) => {
+      updateCustomer(userId, userVersion, userInfoData, billingId, shippingId)
+        .then((response: UserData) => {
           showSuccessToastMessage('Saved!');
           setUserData(response);
-        },
-      );
+        })
+        .catch((error: Error) => {
+          showErrorToastMessage(`Error: ${error.message}`);
+        });
     }
   };
 
