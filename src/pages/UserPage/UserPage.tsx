@@ -79,6 +79,17 @@ function UserPage() {
       <h2 className="text-2xl font-semibold mb-4">User Profile</h2>
       <div className="w-full max-w-sm bg-white p-8 rounded shadow-md">
         <FormProvider {...methods}>
+          {disabled ? (
+            <button
+              className="w-full bg-blue-500 text-white p-2 mb-3 rounded hover:bg-blue-600"
+              disabled={formState.isSubmitting}
+              onClick={() => setDisabled(false)}
+            >
+              Edit
+            </button>
+          ) : (
+            ''
+          )}
           {userData ? (
             <>
               <InputText
@@ -163,24 +174,27 @@ function UserPage() {
           ) : (
             <p>Loading user data ...</p>
           )}
-          {disabled ? (
-            <button
-              className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-              disabled={formState.isSubmitting}
-              onClick={() => setDisabled(false)}
-            >
-              Edit
-            </button>
+          {!disabled ? (
+            <div className="">
+              <button
+                type="submit"
+                className="bg-blue-500 text-white p-2 mr-3 rounded hover:bg-blue-600"
+                disabled={formState.isSubmitting}
+                // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                onClick={handleSubmit(onSubmit)}
+              >
+                Save Changes
+              </button>
+              <button
+                type="button"
+                className="bg-blue-500 text-white p-2 mb-3 rounded hover:bg-blue-600"
+                onClick={() => setDisabled(true)}
+              >
+                Cancel
+              </button>
+            </div>
           ) : (
-            <button
-              type="submit"
-              className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-              disabled={formState.isSubmitting}
-              // eslint-disable-next-line @typescript-eslint/no-misused-promises
-              onClick={handleSubmit(onSubmit)}
-            >
-              Save Changes
-            </button>
+            ''
           )}
         </FormProvider>
       </div>
