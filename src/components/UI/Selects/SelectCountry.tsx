@@ -6,11 +6,12 @@ type InputCountryProps = {
   name: string;
   defaultCountry: string;
   onCountryChange: (country: string) => void;
+  disabled?: boolean;
 };
 
 function SelectCountry(props: InputCountryProps): JSX.Element {
   const { control } = useFormContext();
-  const { name, defaultCountry, onCountryChange } = props;
+  const { name, defaultCountry, onCountryChange, disabled } = props;
 
   const handleCountryChange = (country: string) => {
     const selectedCountry = country;
@@ -30,6 +31,7 @@ function SelectCountry(props: InputCountryProps): JSX.Element {
             <select
               className="w-full h-8 p-1 border text-sm border-gray-300 rounded"
               {...field}
+              disabled={disabled}
               onChange={(e) => {
                 field.onChange(e);
                 handleCountryChange(e.target.value);

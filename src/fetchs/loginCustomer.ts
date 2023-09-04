@@ -1,4 +1,10 @@
 import { Dispatch, SetStateAction } from 'react';
+import { setLocalStorage } from '../utils/localStorageFuncs';
+import UserData from '../interfaces/UserData';
+
+interface ResponseUserData {
+  customer: UserData;
+}
 
 export default function loginUser(
   email: string,
@@ -30,8 +36,8 @@ export default function loginUser(
       return response.text();
     })
     .then((result) => {
-      // const obj = JSON.parse(result);
-      // console.log('🚀 obj:', obj);
+      const obj: ResponseUserData = JSON.parse(result) as ResponseUserData;
+      setLocalStorage('bearID', obj.customer.id);
       setIsAuth(true);
       return result;
     })

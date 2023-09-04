@@ -2,10 +2,13 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid';
 import { useState } from 'react';
 
-function InputPassword(props: { password: string }): JSX.Element {
+function InputPassword(props: { password: string; disabled?: boolean }): JSX.Element {
   const { control } = useFormContext();
-  const { password } = props;
+  const { password, disabled } = props;
   const [showPassword, setShowPassword] = useState(false);
+  const inputClasses = `border rounded p-2 mr-2 border-gray-300 ${
+    disabled ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : ''
+  }`;
 
   return (
     <div className="mb-4">
@@ -29,9 +32,10 @@ function InputPassword(props: { password: string }): JSX.Element {
           <div>
             <div className="flex items-center">
               <input
-                className="border rounded p-2 mr-2"
+                className={inputClasses}
                 type={showPassword ? 'text' : 'password'}
                 {...field}
+                disabled={disabled}
               />
               <button
                 onClick={() => setShowPassword(!showPassword)}
