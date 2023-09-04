@@ -35,7 +35,6 @@ interface Address {
   country: string;
 }
 
-
 export interface UserInfo {
   billingCity: string;
   billingCountry: string;
