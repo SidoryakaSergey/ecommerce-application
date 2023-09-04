@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { UserCircleIcon } from '@heroicons/react/24/outline';
+
 import Hamburger from 'hamburger-react';
 import styles from './Header.module.css';
 import UserAccountHeader from './UserAccountHeader';
@@ -60,19 +60,19 @@ const Header: React.FC = () => {
           gap: '15px',
         }}
       >
-        <NavLink
+        {/* <NavLink
           to="/"
           style={{ color: '#a94d29ff' }}
           className="text-white font-semibold text-lg hover:opacity-75 transition duration-300"
         >
           Main
-        </NavLink>
+        </NavLink> */}
         <div
           className="space-x-4"
           style={{ display: 'flex', alignItems: 'center', fontWeight: 'bold', color: '#a94d29ff' }}
         >
           <UserAccountHeader />
-          <div>
+          {/* <div>
             <NavLink
               style={{ color: '#a94d29ff' }}
               to="/login"
@@ -80,7 +80,7 @@ const Header: React.FC = () => {
             >
               <UserCircleIcon className="w-10 h-10 text-white hover:text-gray-400" />
             </NavLink>
-          </div>
+          </div> */}
         </div>
       </nav>
     </header>

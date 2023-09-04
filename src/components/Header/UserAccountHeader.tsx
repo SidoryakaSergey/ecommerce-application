@@ -1,35 +1,55 @@
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import {
+  UserCircleIcon,
+  ArrowLeftOnRectangleIcon,
+  ArrowRightOnRectangleIcon,
+  UserPlusIcon,
+} from '@heroicons/react/24/outline';
 import AuthContext from '../../context/authContext';
-// import UserData from '../../interfaces/UserData';
-// import getDataCustomer from '../../fetchs/getDataCustomer';
-
-// async function handelGetDataCustomer() {
-//   const data: UserData = await getDataCustomer('5b8323b7-5a80-4175-b4ff-72c4325b0d8a');
-//   console.log(data);
-// }
+import { deleteLocalStorage } from '../../utils/localStorageFuncs';
 
 export default function UserAccountHeader() {
   const authContext = useContext(AuthContext);
-  const isAuth = authContext?.isAuth || false; // Если authContext равен null, то isAuth равен false
+  const isAuth = authContext?.isAuth || false;
+  const setIsAuth = authContext?.setIsAuth || null;
 
   return (
     <>
       {isAuth ? (
-        // Пользователь аутентифициро-ван, показываем кнопку "User"
         <div style={{ display: 'flex', gap: '15px' }}>
           <NavLink to="/user">
-            <button>User</button>
+            <button title="User profile">
+              <UserCircleIcon className="w-10 h-10" />
+            </button>
           </NavLink>
           <NavLink to="/login">
-            <button>reLogin</button>
+            <button
+              title="Log out"
+              onClick={() => {
+                deleteLocalStorage('bearToken');
+                deleteLocalStorage('bearID');
+                if (setIsAuth) setIsAuth(false);
+              }}
+            >
+              <ArrowRightOnRectangleIcon className="w-10 h-10 mr-2" />
+            </button>
           </NavLink>
         </div>
       ) : (
-        // Пользователь не аутентифицирован, показываем кнопку "Login"
-        <NavLink to="/login">
-          <button>Login</button>
-        </NavLink>
+        <>
+          <NavLink to="/register">
+            <button title="Register user">
+              <UserPlusIcon className="w-10 h-10 mr-2" />
+            </button>
+          </NavLink>
+
+          <NavLink to="/login">
+            <button title="Login user">
+              <ArrowLeftOnRectangleIcon className="w-10 h-10 mr-2" />
+            </button>
+          </NavLink>
+        </>
       )}
     </>
   );

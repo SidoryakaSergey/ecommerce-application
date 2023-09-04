@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
-export const showSuccessToastMessage = () => {
-  toast.success('You have successfully logged!', {
+export const showSuccessToastMessage = (message: string) => {
+  toast.success(message, {
     position: toast.POSITION.TOP_RIGHT,
   });
 };

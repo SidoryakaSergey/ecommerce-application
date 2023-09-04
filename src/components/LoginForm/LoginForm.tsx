@@ -39,7 +39,7 @@ function LoginForm() {
         if (typeof response !== 'string' && 'access_token' in response) {
           token = response.access_token;
           loginUser(data.email, data.password, token, setIsAuth);
-          showSuccessToastMessage();
+          showSuccessToastMessage('You have successfully logged!');
           setTimeout(() => {
             navigate('/');
           }, 2000);

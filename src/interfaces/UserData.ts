@@ -18,7 +18,8 @@ export default interface UserData {
   lastName: string;
   password: string;
   addresses: Address[];
-  defaultBillingAddressId: string;
+  defaultBillingAddressId?: string;
+  defaultShippingAddressId?: string;
   shippingAddressIds: string[];
   billingAddressIds: string[];
   isEmailVerified: boolean;
