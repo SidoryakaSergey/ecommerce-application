@@ -6,7 +6,6 @@ import { showErrorToastMessage, showSuccessToastMessage } from '../../utils/toas
 import 'react-toastify/dist/ReactToastify.css';
 
 import { InputText, InputMail, InputPostalCode } from '../../components/UI/Inputs';
-import CheckboxAdress from '../../components/UI/Checkbocks/CheckboxAdress.tsx';
 import SelectCountry from '../../components/UI/Selects/SelectCountry.tsx';
 
 import UserData, { UserInfo } from '../../interfaces/UserData.ts';
@@ -173,11 +172,6 @@ function UserPage() {
                 defaultText={userData.addresses[0].streetName}
                 disabled={disabled}
               />
-              <CheckboxAdress
-                name="billingDefault"
-                defaultValue={Boolean(userData.defaultBillingAddressId)}
-                disabled={disabled}
-              />
               <div className="flex justify-center">
                 <h2>Shipping Adress</h2>
               </div>
@@ -203,11 +197,6 @@ function UserPage() {
                 name="shippingStreet"
                 title="Street and Appartment"
                 defaultText={userData.addresses[1].streetName}
-                disabled={disabled}
-              />
-              <CheckboxAdress
-                name="shippingDefault"
-                defaultValue={Boolean(userData.defaultShippingAddressId)}
                 disabled={disabled}
               />
             </>
