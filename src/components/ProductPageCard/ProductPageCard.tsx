@@ -77,11 +77,16 @@ const ProductPageCard = (props: ProductPageCardProps) => {
       );
     } else {
       prices = (
-        <div className={styles.bookSpanBox}>
-          <span className={styles.bookItemMoney}>
-            {product.masterData.current.masterVariant.prices[0].value.centAmount / 100}$
-          </span>
-        </div>
+        <button
+          className={byttonStyle.myButton}
+          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        >
+          <div className={`${styles.bookSpanBox}`}>
+            <span className={`${styles.bookItemMoney}`}>
+              {product.masterData.current.masterVariant.prices[0].value.centAmount / 100}$
+            </span>
+          </div>
+        </button>
       );
     }
     const { images } = product.masterData.current.masterVariant;
