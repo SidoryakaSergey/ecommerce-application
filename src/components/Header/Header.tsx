@@ -6,6 +6,7 @@ import styles from './Header.module.css';
 import UserAccountHeader from './UserAccountHeader';
 import logoPng from '../../assets/logo/logo.png';
 import BurgerMenu from '../BurgerMenu/BurgerMenu.tsx';
+import SearchingForm from './SearchingForm.tsx';
 
 const Header: React.FC = () => {
   const [isOpen, setOpen] = useState(false);
@@ -60,27 +61,12 @@ const Header: React.FC = () => {
           gap: '15px',
         }}
       >
-        {/* <NavLink
-          to="/"
-          style={{ color: '#a94d29ff' }}
-          className="text-white font-semibold text-lg hover:opacity-75 transition duration-300"
-        >
-          Main
-        </NavLink> */}
         <div
           className="space-x-4"
           style={{ display: 'flex', alignItems: 'center', fontWeight: 'bold', color: '#a94d29ff' }}
         >
+          <SearchingForm />
           <UserAccountHeader />
-          {/* <div>
-            <NavLink
-              style={{ color: '#a94d29ff' }}
-              to="/login"
-              className="flex flex-col items-center text-white hover:opacity-75 transition duration-300"
-            >
-              <UserCircleIcon className="w-10 h-10 text-white hover:text-gray-400" />
-            </NavLink>
-          </div> */}
         </div>
       </nav>
     </header>
