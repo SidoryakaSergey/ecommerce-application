@@ -20,7 +20,7 @@ export default function UserAccountHeader() {
         <div style={{ display: 'flex', gap: '15px' }}>
           <NavLink to="/user">
             <button title="User profile">
-              <UserCircleIcon className="w-10 h-10" />
+              <UserCircleIcon className="w-10 h-10 hover:text-blue-600" />
             </button>
           </NavLink>
           <NavLink to="/login">
@@ -32,7 +32,7 @@ export default function UserAccountHeader() {
                 if (setIsAuth) setIsAuth(false);
               }}
             >
-              <ArrowRightOnRectangleIcon className="w-10 h-10 mr-2" />
+              <ArrowRightOnRectangleIcon className="w-10 h-10 mr-2 hover:text-blue-600" />
             </button>
           </NavLink>
         </div>
@@ -40,13 +40,13 @@ export default function UserAccountHeader() {
         <>
           <NavLink to="/register">
             <button title="Register user">
-              <UserPlusIcon className="w-10 h-10 mr-2" />
+              <UserPlusIcon className="w-10 h-10 mr-2 hover:text-blue-600" />
             </button>
           </NavLink>
 
           <NavLink to="/login">
             <button title="Login user">
-              <ArrowLeftOnRectangleIcon className="w-10 h-10 mr-2" />
+              <ArrowLeftOnRectangleIcon className="w-10 h-10 mr-2 hover:text-blue-600" />
             </button>
           </NavLink>
         </>
