@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header.tsx';
+import Footer from '../Footer/Footer.tsx';
 
 function Layout() {
   return (
@@ -8,8 +9,15 @@ function Layout() {
       <main className="flex-grow bg-gray-100 flex flex-col">
         <Outlet />
       </main>
-      <footer className="container mx-auto flex justify-center items-center p-4">
-        eCommerce Application 2023
+      <footer
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'space-evenly',
+          backgroundColor: 'rgb(253,253,255)',
+        }}
+      >
+        <Footer />
       </footer>
     </>
   );

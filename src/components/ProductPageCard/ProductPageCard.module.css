@@ -6,10 +6,10 @@
 .pageBox {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   padding: 2rem;
   margin: 0 auto;
-  max-width: 1440px;
+  max-width: 900px;
 }
 
 .fontAdaptiveName {
@@ -20,7 +20,7 @@
 }
 
 .imageBox {
-  min-width: 350px;
+  min-width: 450px;
   width: 50%;
   height: 50vh;
   max-height: 500px;
@@ -31,7 +31,6 @@
 }
 
 .image {
-  margin: 0 auto;
   height: 100%;
 }
 
@@ -41,11 +40,11 @@
   flex-direction: column;
   min-width: 350px;
   width: 30%;
-  padding: 0 15px;
 }
 
 .annotaion {
-  padding: 15px;
+  margin-top: 30px;
+  text-align: justify;
 }
 
 @media (max-width: 800px) {
@@ -70,4 +69,94 @@
     height: auto;
   }
 }
+
+
+:root {
+  --caput-mortuum: #633427ff;
+  --caput-mortuum-2: #4d2f27ff;
+  --taupe: #46403dff;
+  --rust: #a94d29ff;
+  --van-dyke: #3c2d29ff;
+}
+
+
+.productCard {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  width: 305px;
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.productCard__imgWr {
+  height: 322px;
+  width: 100%;
+  margin-bottom: 16px;
+  background-color: #fff;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.productCard__imgWr__imgBox {
+  height: 100%;
+  padding: 16px;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+.productCard__imgWr__imgBox__img {
+  height: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.bookSpanBox {
+  color: #fff;
+  display: flex;
+}
+
+.bookItemMoney {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 600;
+  color: #ffffff;
+}
+.bookItemMoneyWithDiscount {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.bookName {
+  color: #2A2B2D;
+  transition: .3s;
+}
+
+@media (hover: hover) {
+  .productCard:hover {
+    scale: 1.05;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+
+  .productCard:hover .bookName {
+    color: var(--van-dyke)
+  }
+}
+
+@media (max-width: 500px) {
+  .imageBox {
+    min-width: 250px;
+    width: 50%;
+    height: 50vh;
+    max-height: 500px;
+    margin: 0 auto;
+  }
+}
+
+
+
+
 

@@ -27,3 +27,9 @@
   border: none;
 }
 
+@media (max-width: 600px) {
+  .textLogo {
+    display: none;
+  }
+}
+
