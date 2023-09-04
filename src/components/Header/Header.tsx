@@ -40,10 +40,10 @@ const Header: React.FC = () => {
         <Hamburger toggled={isOpen} toggle={setOpen} />
         <NavLink to="/">
           <div className={styles.logoContainer}>
-            <div>
-              <img src={logoPng} alt="Logo" className="w-10 4-20 rounded-lg" />
+            <div style={{ width: '50px', height: '100%', padding: '5px' }}>
+              <img src={logoPng} alt="Logo" className="" />
             </div>
-            <div className={styles.logoContainer}>
+            <div className={`${styles.logoContainer} ${styles.textLogo}`}>
               <h1 className="text-xl" style={{ whiteSpace: 'nowrap' }}>
                 Doomsday store
               </h1>

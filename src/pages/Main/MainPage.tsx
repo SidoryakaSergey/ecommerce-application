@@ -18,6 +18,7 @@ function MainPage() {
         >
           <div>
             <img
+              role={'img'}
               alt={'banner1'}
               src="https://raw.githubusercontent.com/ZiberPax/repoForData/main/eCom%20Img/DreamShaper_v7_A_DOOMSDAY_book_store_poster_with_books_in_apoc_01%20(1).png"
             />
@@ -37,7 +38,6 @@ function MainPage() {
         </Carousel>
       </div>
       <Product />
-      <h1>Main</h1>
     </div>
   );
 }

@@ -37,8 +37,7 @@ const Products: React.FC<ProductsProps> = (props) => {
 
   return (
     <div className={styles.mainBox}>
-      <h2>Products</h2>
-      <div className={styles.productsBox}>
+      <div className={styles.productsBox} style={{ padding: '15px 0' }}>
         {products.map((product) => (
           <ProductCard
             key={product.id}
