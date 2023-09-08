@@ -6,12 +6,11 @@ describe('MainPage', () => {
   it('Renders main content', () => {
     // ARRANGE
     render(<MainPage />);
+
     // ACT
-    // EXPECT
-    expect(
-      screen.getByRole('heading', {
-        level: 1,
-      }),
-    ).toHaveTextContent('Main');
+    const incrediblesPosterImg = screen.getAllByAltText(/banner1/i);
+
+    // ASSERT
+    expect(incrediblesPosterImg[0]).toBeInTheDocument();
   });
 });

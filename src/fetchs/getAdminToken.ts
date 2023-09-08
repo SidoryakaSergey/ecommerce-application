@@ -7,12 +7,9 @@ export default async function getAdminToken() {
     'Basic Tm9rakREa2RsVEFEY2U4TlFjNDl0R0dpOjd3dmdYbk1NNXJTeEVjWjduYjZTUEtoVFFUXzlia2V3',
   );
 
-  const raw = '';
-
   const requestOptions: RequestInit = {
     method: 'POST',
     headers: myHeaders,
-    body: raw,
     redirect: 'follow',
   };
 

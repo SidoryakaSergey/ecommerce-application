@@ -1,4 +1,17 @@
-export default function loginUser(email: string, password: string, bearToken: string) {
+import { Dispatch, SetStateAction } from 'react';
+import { setLocalStorage } from '../utils/localStorageFuncs';
+import UserData from '../interfaces/UserData';
+
+interface ResponseUserData {
+  customer: UserData;
+}
+
+export default function loginUser(
+  email: string,
+  password: string,
+  bearToken: string,
+  setIsAuth: Dispatch<SetStateAction<boolean>>,
+) {
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
   myHeaders.append('Authorization', `Bearer ${bearToken}`);
@@ -22,7 +35,11 @@ export default function loginUser(email: string, password: string, bearToken: st
       }
       return response.text();
     })
-    .then((result) => result)
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    .then((result) => {
+      const obj: ResponseUserData = JSON.parse(result) as ResponseUserData;
+      setLocalStorage('bearID', obj.customer.id);
+      setIsAuth(true);
+      return result;
+    })
     .catch((error: Error) => error.message);
 }

@@ -1,20 +1,86 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import Hamburger from 'hamburger-react';
+import styles from './Header.module.css';
+import UserAccountHeader from './UserAccountHeader';
+import logoPng from '../../assets/logo/logo.png';
+import BurgerMenu from '../BurgerMenu/BurgerMenu.tsx';
+
 const Header: React.FC = () => {
+  const [isOpen, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
+    }
+  }, [isOpen]);
+
+  function showBurger() {
+    if (isOpen) {
+      return <BurgerMenu />;
+    }
+    return null;
+  }
+
   return (
-    <header className="bg-blue-500 p-4">
-      <nav className="container mx-auto flex justify-end items-center gap-10">
-        <NavLink
+    <header className={styles.headerContainer}>
+      {showBurger()}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          fontWeight: 'bold',
+          color: '#a94d29ff',
+          gap: '20px',
+        }}
+      >
+        <Hamburger toggled={isOpen} toggle={setOpen} />
+        <NavLink to="/">
+          <div className={styles.logoContainer}>
+            <div style={{ width: '50px', height: '100%', padding: '5px' }}>
+              <img src={logoPng} alt="Logo" className="" />
+            </div>
+            <div className={`${styles.logoContainer} ${styles.textLogo}`}>
+              <h1 className="text-xl" style={{ whiteSpace: 'nowrap' }}>
+                Doomsday store
+              </h1>
+            </div>
+          </div>
+        </NavLink>
+      </div>
+      <nav
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          fontWeight: 'bold',
+          color: '#a94d29ff',
+          gap: '15px',
+        }}
+      >
+        {/* <NavLink
           to="/"
+          style={{ color: '#a94d29ff' }}
           className="text-white font-semibold text-lg hover:opacity-75 transition duration-300"
         >
           Main
-        </NavLink>
-        <div className="space-x-4">
-          <NavLink to="/login" className="text-white hover:opacity-75 transition duration-300">
-            Login
-          </NavLink>
+        </NavLink> */}
+        <div
+          className="space-x-4"
+          style={{ display: 'flex', alignItems: 'center', fontWeight: 'bold', color: '#a94d29ff' }}
+        >
+          <UserAccountHeader />
+          {/* <div>
+            <NavLink
+              style={{ color: '#a94d29ff' }}
+              to="/login"
+              className="flex flex-col items-center text-white hover:opacity-75 transition duration-300"
+            >
+              <UserCircleIcon className="w-10 h-10 text-white hover:text-gray-400" />
+            </NavLink>
+          </div> */}
         </div>
       </nav>
     </header>
