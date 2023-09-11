@@ -5,7 +5,7 @@ const ProductPage = () => {
   const { id } = useParams();
 
   return (
-    <div>
+    <div style={{ background: '#f1f5f9' }}>
       <ProductPageCard id={id!} />
     </div>
   );

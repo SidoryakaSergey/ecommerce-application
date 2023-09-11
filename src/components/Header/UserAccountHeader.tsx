@@ -17,7 +17,7 @@ export default function UserAccountHeader() {
   return (
     <>
       {isAuth ? (
-        <div style={{ display: 'flex', gap: '15px' }}>
+        <div style={{ display: 'flex', gap: '15px', color: '#E5E7EB' }}>
           <NavLink to="/user">
             <button title="User profile">
               <UserCircleIcon className="w-10 h-10" />
@@ -39,13 +39,13 @@ export default function UserAccountHeader() {
       ) : (
         <>
           <NavLink to="/register">
-            <button title="Register user">
+            <button title="Register user" style={{ color: '#E5E7EB' }}>
               <UserPlusIcon className="w-10 h-10 mr-2" />
             </button>
           </NavLink>
 
           <NavLink to="/login">
-            <button title="Login user">
+            <button title="Login user" style={{ color: '#E5E7EB' }}>
               <ArrowLeftOnRectangleIcon className="w-10 h-10 mr-2" />
             </button>
           </NavLink>
