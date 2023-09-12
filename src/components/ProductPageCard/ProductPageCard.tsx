@@ -7,11 +7,11 @@ import { ProductsArr } from '../../interfaces/productsI.ts';
 import getProduct from '../../fetchs/getProduct.ts';
 import styles from './ProductPageCard.module.css';
 import DescLabel from './DescLabel/DescLabel.tsx';
-import byttonStyle from './button.module.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import Loading from '../Loading/Loading.tsx';
+import MyButton from '../Button/MyButton.tsx';
 
 interface ProductPageCardProps {
   id: string;
@@ -43,6 +43,7 @@ const ProductPageCard = (props: ProductPageCardProps) => {
   const customStyles = {
     content: {
       maxHeight: '70vh',
+      height: '100%',
     },
   };
 
@@ -57,42 +58,60 @@ const ProductPageCard = (props: ProductPageCardProps) => {
     setShowModal(false);
   };
 
+  function buy() {
+    return null;
+  }
+
   if (product) {
     if (product.masterData.current.masterVariant.prices[0].discounted) {
       prices = (
-        <button
-          className={byttonStyle.myButton}
-          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-        >
-          <div className={`${styles.bookSpanBox}`}>
-            <span className={styles.bookItemMoney}>
-              {product.masterData.current.masterVariant.prices[0].discounted.value.centAmount / 100}
-              $ &nbsp;
-            </span>
-            <span className={`${styles.bookItemMoney} ${styles.bookItemMoneyWithDiscount}`}>
-              {product.masterData.current.masterVariant.prices[0].value.centAmount / 100}$
-            </span>
-          </div>
-        </button>
+        <div className={`${styles.bookSpanBox}`}>
+          <span className={styles.bookItemMoney}>
+            {product.masterData.current.masterVariant.prices[0].discounted.value.centAmount / 100}$
+            &nbsp;
+          </span>
+          <span className={`${styles.bookItemMoney} ${styles.bookItemMoneyWithDiscount}`}>
+            {product.masterData.current.masterVariant.prices[0].value.centAmount / 100}$
+          </span>
+        </div>
       );
     } else {
       prices = (
-        <button
-          className={byttonStyle.myButton}
-          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-        >
-          <div className={`${styles.bookSpanBox}`}>
-            <span className={`${styles.bookItemMoney}`}>
-              {product.masterData.current.masterVariant.prices[0].value.centAmount / 100}$
-            </span>
-          </div>
-        </button>
+        <div className={`${styles.bookSpanBox}`}>
+          <span className={`${styles.bookItemMoney}`}>
+            {product.masterData.current.masterVariant.prices[0].value.centAmount / 100}$
+          </span>
+        </div>
       );
     }
     const { images } = product.masterData.current.masterVariant;
 
     return (
       <div className={styles.pageBox}>
+        <Modal style={customStyles} isOpen={showModal} onRequestClose={closeModal}>
+          <Swiper
+            style={{ height: '100%' }}
+            grabCursor={true}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Autoplay, Pagination, Navigation]}
+            className={styles.modalSwiper}
+            spaceBetween={50}
+            slidesPerView={1}
+            initialSlide={selectedImageIndex}
+          >
+            {images.map((image, index) => (
+              <SwiperSlide
+                key={index}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              >
+                <img className={`${styles.moduleImg}`} src={image.url} alt={'cover'} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </Modal>
         <div className={styles.imageBox}>
           {!showModal ? (
             <Swiper
@@ -127,80 +146,58 @@ const ProductPageCard = (props: ProductPageCardProps) => {
             </Swiper>
           ) : null}
         </div>
-        <Modal style={customStyles} isOpen={showModal} onRequestClose={closeModal}>
-          <Swiper
-            style={{ height: '100%' }}
-            grabCursor={true}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            modules={[Autoplay, Pagination, Navigation]}
-            className={styles.modalSwiper}
-            spaceBetween={50}
-            slidesPerView={1}
-            initialSlide={selectedImageIndex}
-          >
-            {images.map((image, index) => (
-              <SwiperSlide
-                key={index}
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-              >
-                <img className={`${styles.moduleImg}`} src={image.url} alt={'cover'} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </Modal>
-        <div className={styles.descriptionBox}>
-          <div>
+        <div className={styles.descBox}>
+          <div className={styles.descriptionBox}>
             <div>
               <div>
-                <label
-                  className={styles.fontAdaptiveName}
-                  style={{ color: 'rgb(13, 12, 34)', fontWeight: 'bold' }}
-                >
-                  {product.masterData.current.name['en-US']}
-                </label>
+                <div>
+                  <label
+                    className={styles.fontAdaptiveName}
+                    style={{ color: 'rgb(13, 12, 34)', fontWeight: 'bold' }}
+                  >
+                    {product.masterData.current.name['en-US']}
+                  </label>
+                </div>
+                <div>
+                  <label className={styles.fontAdaptiveAutor} style={{ color: 'rgb(13, 12, 34)' }}>
+                    {product.masterData.current.masterVariant.attributes[0].value}
+                  </label>
+                </div>
               </div>
+              {prices}
               <div>
-                <label className={styles.fontAdaptiveAutor} style={{ color: 'rgb(13, 12, 34)' }}>
-                  {product.masterData.current.masterVariant.attributes[0].value}
-                </label>
+                <DescLabel
+                  labelName={product.masterData.current.masterVariant.attributes[1].name}
+                  value={product.masterData.current.masterVariant.attributes[1].value}
+                />
+                <DescLabel
+                  labelName={product.masterData.current.masterVariant.attributes[2].name}
+                  value={product.masterData.current.masterVariant.attributes[2].value}
+                />
+                <DescLabel
+                  labelName={product.masterData.current.masterVariant.attributes[3].name}
+                  value={product.masterData.current.masterVariant.attributes[3].value}
+                />
+                <DescLabel
+                  labelName={product.masterData.current.masterVariant.attributes[4].name}
+                  value={product.masterData.current.masterVariant.attributes[4].value}
+                />
               </div>
             </div>
-            <div>
-              <DescLabel
-                labelName={product.masterData.current.masterVariant.attributes[1].name}
-                value={product.masterData.current.masterVariant.attributes[1].value}
-              />
-              <DescLabel
-                labelName={product.masterData.current.masterVariant.attributes[2].name}
-                value={product.masterData.current.masterVariant.attributes[2].value}
-              />
-              <DescLabel
-                labelName={product.masterData.current.masterVariant.attributes[3].name}
-                value={product.masterData.current.masterVariant.attributes[3].value}
-              />
-              <DescLabel
-                labelName={product.masterData.current.masterVariant.attributes[4].name}
-                value={product.masterData.current.masterVariant.attributes[4].value}
-              />
-            </div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                width: '100%',
+                justifyContent: 'center',
+              }}
+            ></div>
           </div>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              width: '100%',
-              justifyContent: 'center',
-            }}
-          >
-            {prices}
+          <div className={styles.annotaion}>
+            {product.masterData.current.masterVariant.attributes[5].value}
           </div>
-        </div>
-        <div className={styles.annotaion}>
-          {product.masterData.current.masterVariant.attributes[5].value}
+          <MyButton onClick={buy}>Add to card</MyButton>
         </div>
       </div>
     );

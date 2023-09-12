@@ -21,7 +21,7 @@ const ProductCard = (product: ProductsArr) => {
   let prices;
   if (productMasterVarian.prices[0].discounted) {
     prices = (
-      <div className={`${styles.bookSpanBox}`}>
+      <div className={`${`${styles.bookSpanBox} ${styles.flexCenter} ${styles.moneyBox}`}`}>
         <span className={styles.bookItemMoney}>
           {productMasterVarian.prices[0].discounted.value.centAmount / 100}$ &nbsp;
         </span>
@@ -32,7 +32,7 @@ const ProductCard = (product: ProductsArr) => {
     );
   } else {
     prices = (
-      <div className={styles.bookSpanBox}>
+      <div className={`${styles.bookSpanBox} ${styles.flexCenter} ${styles.moneyBox}`}>
         <span className={styles.bookItemMoney}>
           {productMasterVarian.prices[0].value.centAmount / 100}$
         </span>
@@ -41,8 +41,8 @@ const ProductCard = (product: ProductsArr) => {
   }
 
   return (
-    <div className={styles.productCard} onClick={openCard}>
-      <div className={styles.productCard__imgWr}>
+    <div className={styles.productCard}>
+      <div className={styles.productCard__imgWr} onClick={openCard}>
         <div className={styles.productCard__imgWr__imgBox}>
           <a>
             <img
@@ -53,22 +53,23 @@ const ProductCard = (product: ProductsArr) => {
           </a>
         </div>
       </div>
-      <div>
-        {prices}
-        <div className={styles.bookSpanBox}>
+      <div className={'p-2'}>
+        <div onClick={openCard} className={styles.bookSpanBox}>
           <a>
             <span className={styles.bookName} style={{ fontSize: '14px' }}>
               {productName}
             </span>
           </a>
         </div>
-        <div className={styles.bookSpanBox}>
+        <div onClick={openCard} className={`${styles.bookSpanBox} ${styles.flexEnd}`}>
           <a>
             <span className={styles.bookItemMoney} style={{ color: '#949599', fontSize: '14px' }}>
               {productMasterVarian.attributes[0].value}
             </span>
           </a>
         </div>
+        <hr className="w-90% h-0.5 mx-auto my-3 bg-gray-200 border-0 rounded" />
+        {prices}
       </div>
     </div>
   );

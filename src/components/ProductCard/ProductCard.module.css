@@ -11,19 +11,21 @@
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  width: 305px;
+  width: 240px;
   position: relative;
   box-sizing: border-box;
   flex-shrink: 0;
   cursor: pointer;
   transition: .3s;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .productCard__imgWr {
   height: 322px;
   width: 100%;
   margin-bottom: 16px;
-  background-color: #fff;
+  background-color: inherit;
   position: relative;
   box-sizing: border-box;
 }
@@ -39,19 +41,28 @@
   height: 100%;
   margin: 0 auto;
   box-sizing: border-box;
+  box-shadow: 1px 11px 21px 3px #5c5c5c;
 }
 
 .bookSpanBox {
   margin-bottom: 8px;
-  color: #2A2B2D;
   display: flex;
+  color: rgb(148, 149, 153);
+}
+
+
+.flexEnd {
+  justify-content: flex-end;
+}
+.flexCenter {
+  justify-content: center;
 }
 
 .bookItemMoney {
   font-size: 20px;
   line-height: 24px;
   font-weight: 600;
-  color: #2A2B2D;
+  color: rgb(97 98 102);
 }
 .bookItemMoneyWithDiscount {
   text-decoration: line-through;
@@ -59,8 +70,18 @@
 }
 
 .bookName {
-  color: #2A2B2D;
+  line-height: 24px;
+  font-weight: 600;
+  color: rgb(148, 149, 153);
   transition: .3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.moneyBox:hover span {
+  transition: color 0.3s ease;
+  color: rgb(148, 149, 153);
 }
 
 @media (hover: hover) {
@@ -68,10 +89,15 @@
     scale: 1.05;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
+  
+  .moneyBox:hover span {
+    color: #11271e !important;
+  }
 
-  .productCard:hover .bookName {
-    color: var(--van-dyke)
+  .moneyBox:hover hr {
+    background-color: #11271e;
   }
 }
+
 
 

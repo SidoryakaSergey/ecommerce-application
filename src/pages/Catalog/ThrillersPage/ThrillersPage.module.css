@@ -1,5 +1,65 @@
 .carouselBox {
   margin-left: -2rem;
   margin-right: -2rem;
+  width: 100%;
+
 }
 
+.mainBox {
+  width: 1280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main {
+  padding: 5px 20px;
+  background: #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.blackCollor {
+  color: #020617;
+}
+
+@media (max-width: 1350px) {
+  .mainBox {
+    width: 768px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 800px) {
+  .mainBox {
+    width: 515px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .carouselBox {
+    display: none;
+  }
+}
+@media (max-width: 515px) {
+  .mainBox {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 350px) {
+  .mainBox {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+}

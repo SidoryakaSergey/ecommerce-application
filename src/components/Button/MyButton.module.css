@@ -1,1 +1,27 @@
 
+.myButton {
+  background-color: transparent;
+  background-color: #125e7a;
+  border: 0;
+  border-radius: 4px;
+  color: inherit;
+  color: #fff;
+  font-family: inherit;
+  letter-spacing: .02em;
+  max-width: 272px;
+  padding: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color .2s ease;
+  width: 100%;
+  transition: .15s linear;
+  font-weight: bold;
+}
+
+@media (hover:hover) {
+  .myButton:hover {
+    
+  transform: scale(1.04);
+  }
+  
+}
