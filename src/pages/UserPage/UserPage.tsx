@@ -115,7 +115,7 @@ function UserPage() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center mt-6">
       <h2 className="text-2xl font-semibold mb-4">User Profile</h2>
       <div className="w-full max-w-sm bg-white p-8 rounded shadow-md">
         <FormProvider {...methods}>
