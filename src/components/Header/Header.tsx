@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import Hamburger from 'hamburger-react';
+import { UserGroupIcon } from '@heroicons/react/24/outline';
 import styles from './Header.module.css';
 import UserAccountHeader from './UserAccountHeader';
 import logoPng from '../../assets/logo/logo.png';
@@ -60,27 +61,14 @@ const Header: React.FC = () => {
           gap: '15px',
         }}
       >
-        {/* <NavLink
-          to="/"
-          style={{ color: '#a94d29ff' }}
-          className="text-white font-semibold text-lg hover:opacity-75 transition duration-300"
-        >
-          Main
-        </NavLink> */}
+        <Link to="/about" style={{ color: '#a94d29ff' }}>
+          <UserGroupIcon className="w-10 h-10 hover:text-blue-600" title="About Us" />
+        </Link>
         <div
           className="space-x-4"
           style={{ display: 'flex', alignItems: 'center', fontWeight: 'bold', color: '#a94d29ff' }}
         >
           <UserAccountHeader />
-          {/* <div>
-            <NavLink
-              style={{ color: '#a94d29ff' }}
-              to="/login"
-              className="flex flex-col items-center text-white hover:opacity-75 transition duration-300"
-            >
-              <UserCircleIcon className="w-10 h-10 text-white hover:text-gray-400" />
-            </NavLink>
-          </div> */}
         </div>
       </nav>
     </header>
