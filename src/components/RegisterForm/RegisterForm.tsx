@@ -10,6 +10,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { InputText, InputMail, InputPassword, InputPostalCode } from '../UI/Inputs';
 import CheckboxAdress from '../UI/Checkbocks/CheckboxAdress.tsx';
 import SelectCountry from '../UI/Selects/SelectCountry.tsx';
+import tryToGetToken from '../../fetchs/getToken.ts';
+import createCart from '../../fetchs/createCart.ts';
+import Cart from '../../interfaces/cart.ts';
 
 type RegistrationFormValues = {
   email: string;
@@ -72,6 +75,12 @@ const RegistrationForm = () => {
         data.shippingPostalCode,
         data.shippingStreet,
       );
+      const tokenResult = await tryToGetToken(data.email, data.password);
+      await createCart(tokenResult.access_token).then((response) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const cartdata: Cart = JSON.parse(response);
+        localStorage.setItem('cartId', cartdata.id);
+      });
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const responseData = JSON.parse(result);
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

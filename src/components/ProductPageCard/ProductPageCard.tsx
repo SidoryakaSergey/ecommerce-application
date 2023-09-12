@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Modal from 'react-modal';
+import { NavLink } from 'react-router-dom';
 import { ProductsArr } from '../../interfaces/productsI.ts';
 import getProduct from '../../fetchs/getProduct.ts';
 import styles from './ProductPageCard.module.css';
@@ -11,7 +12,10 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import Loading from '../Loading/Loading.tsx';
-import MyButton from '../Button/MyButton.tsx';
+import getCart from '../../fetchs/getCart.ts';
+import Cart from '../../interfaces/cart.ts';
+import updateTokenFromRefresh from '../../fetchs/updateTokenFromRefresh.ts';
+import updateCart from '../../fetchs/updateCart.ts';
 
 interface ProductPageCardProps {
   id: string;
@@ -25,6 +29,48 @@ const ProductPageCard = (props: ProductPageCardProps) => {
   const [product, setProduct] = useState<ProductsArr>();
   const [showModal, setShowModal] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [isProductInCart, setIsProductInCart] = useState(false);
+
+  async function buy(): Promise<void> {
+    if (localStorage.getItem('bearToken')) {
+      await updateTokenFromRefresh().then(() => {
+        const token = localStorage.getItem('bearToken') as string;
+        // eslint-disable-next-line no-void
+        void getCart(token).then(async (resp) => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          const respData: { count: number; limit: number; offset: number; results: Cart[] } =
+            JSON.parse(resp);
+          const idCart = respData.results[0].id;
+          const { version } = respData.results[0];
+          await updateCart(idCart, id, version, token);
+          setIsProductInCart(true);
+        });
+      });
+    }
+  }
+
+  const productCheck = useCallback(async (): Promise<boolean> => {
+    if (localStorage.getItem('bearToken')) {
+      await updateTokenFromRefresh();
+      const token = localStorage.getItem('bearToken') as string;
+      const resp = await getCart(token);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const respData: { count: number; limit: number; offset: number; results: Cart[] } =
+        JSON.parse(resp);
+      return respData.results[0].lineItems.some((element) => element.productId === id);
+    }
+    return false;
+  }, [id]);
+
+  const makePriceButton = useCallback(async () => {
+    const productInCart = await productCheck();
+    setIsProductInCart(productInCart);
+  }, [productCheck]);
+
+  useEffect(() => {
+    // eslint-disable-next-line no-void
+    void makePriceButton();
+  }, [makePriceButton]);
 
   useEffect(() => {
     const fetchProducts = () => {
@@ -57,10 +103,6 @@ const ProductPageCard = (props: ProductPageCardProps) => {
   const closeModal = () => {
     setShowModal(false);
   };
-
-  function buy() {
-    return null;
-  }
 
   if (product) {
     if (product.masterData.current.masterVariant.prices[0].discounted) {
@@ -97,7 +139,7 @@ const ProductPageCard = (props: ProductPageCardProps) => {
             }}
             navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
-            className={styles.modalSwiper}
+            className={`${styles.modalSwiper} ${styles.swiperWrapper}`}
             spaceBetween={50}
             slidesPerView={1}
             initialSlide={selectedImageIndex}
@@ -115,12 +157,12 @@ const ProductPageCard = (props: ProductPageCardProps) => {
         <div className={styles.imageBox}>
           {!showModal ? (
             <Swiper
-              style={{ height: '100%' }}
-              grabCursor={true}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
+              grabCursor={true}
               pagination={{
                 clickable: true,
               }}
@@ -197,7 +239,16 @@ const ProductPageCard = (props: ProductPageCardProps) => {
           <div className={styles.annotaion}>
             {product.masterData.current.masterVariant.attributes[5].value}
           </div>
-          <MyButton onClick={buy}>Add to card</MyButton>
+          {isProductInCart === false ? (
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
+            <button className={styles.myButton} onClick={buy}>
+              Add to cart
+            </button>
+          ) : (
+            <NavLink to={'/cart'} className={styles.myButton}>
+              Go to my cart
+            </NavLink>
+          )}
         </div>
       </div>
     );

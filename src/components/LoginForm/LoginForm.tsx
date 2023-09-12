@@ -9,7 +9,7 @@ import AuthContext from '../../context/authContext';
 import { showErrorToastMessage, showSuccessToastMessage } from '../../utils/toastFuncs.tsx';
 
 import tryToGetToken from '../../fetchs/getToken.ts';
-import loginUser from '../../fetchs/loginCustomer.ts';
+import loginUser from '../../fetchs/loginUser.ts';
 
 import { InputMail, InputPassword } from '../UI/Inputs';
 

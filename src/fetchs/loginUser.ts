@@ -1,9 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
 import { setLocalStorage } from '../utils/localStorageFuncs';
 import UserData from '../interfaces/UserData';
+import Cart from '../interfaces/cart.ts';
 
 interface ResponseUserData {
   customer: UserData;
+  cart?: Cart;
 }
 
 export default function loginUser(
@@ -38,6 +40,10 @@ export default function loginUser(
     .then((result) => {
       const obj: ResponseUserData = JSON.parse(result) as ResponseUserData;
       setLocalStorage('bearID', obj.customer.id);
+      if (obj.cart) {
+        setLocalStorage('cartId', obj.cart.id);
+      }
+
       setIsAuth(true);
       return result;
     })

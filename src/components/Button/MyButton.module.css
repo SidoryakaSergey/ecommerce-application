@@ -13,7 +13,6 @@
   text-align: center;
   text-transform: uppercase;
   transition: background-color .2s ease;
-  width: 100%;
   transition: .15s linear;
   font-weight: bold;
 }
