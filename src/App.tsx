@@ -12,6 +12,7 @@ import ThrillersPage from './pages/Catalog/ThrillersPage/ThrillersPage.tsx';
 import EroticaPage from './pages/Catalog/EroticaPage/EroticaPage.tsx';
 import HorrorsPage from './pages/Catalog/HorrorsPage/HorrorsPage.tsx';
 import AboutUsPage from './pages/AboutUsPage/AboutUsPage.tsx';
+import CatalogPage from './pages/Catalog/CatalogPage/CatalogPage.tsx';
 
 export function App() {
   const navigate = useNavigate();
@@ -38,15 +39,16 @@ export function App() {
     >
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<MainPage />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/user" element={<UserPage />} />
           <Route path="/card/:id" element={<ProductPage />} />
-          <Route path="/thrillers" element={<ThrillersPage />} />
-          <Route path="/erotica" element={<EroticaPage />} />
-          <Route path="/horrors" element={<HorrorsPage />} />
           <Route path="/about" element={<AboutUsPage />} />
+          <Route path="/catalog/thrillers" element={<ThrillersPage />} />
+          <Route path="/catalog/erotica" element={<EroticaPage />} />
+          <Route path="/catalog/horrors" element={<HorrorsPage />} />
+          <Route path="/catalog" element={<CatalogPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

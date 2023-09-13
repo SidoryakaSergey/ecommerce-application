@@ -1,55 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-
 import Hamburger from 'hamburger-react';
 import { UserGroupIcon } from '@heroicons/react/24/outline';
 import styles from './Header.module.css';
 import UserAccountHeader from './UserAccountHeader';
-import logoPng from '../../assets/logo/logo.png';
-import BurgerMenu from '../BurgerMenu/BurgerMenu.tsx';
 
 const Header: React.FC = () => {
-  const [isOpen, setOpen] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'visible';
-    }
-  }, [isOpen]);
-
-  function showBurger() {
-    if (isOpen) {
-      return <BurgerMenu />;
-    }
-    return null;
-  }
-
   return (
-    <header className={styles.headerContainer}>
-      {showBurger()}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          fontWeight: 'bold',
-          color: '#a94d29ff',
-          gap: '20px',
-        }}
-      >
-        <Hamburger toggled={isOpen} toggle={setOpen} />
+    <header className={styles.headerContainer} style={{ color: '#E5E7EB' }}>
+      <div className={styles.logoContainer}>
         <NavLink to="/">
           <div className={styles.logoContainer}>
-            <div style={{ width: '50px', height: '100%', padding: '5px' }}>
-              <img src={logoPng} alt="Logo" className="" />
-            </div>
             <div className={`${styles.logoContainer} ${styles.textLogo}`}>
-              <h1 className="text-xl" style={{ whiteSpace: 'nowrap' }}>
-                Doomsday store
+              <h1
+                className="text-xl sm:text-3xl"
+                style={{ whiteSpace: 'nowrap', fontFamily: 'Gloria Hallelujah' }}
+              >
+                DOOMSDAY
               </h1>
             </div>
           </div>
+        </NavLink>
+        <div className="h-[36px] min-h-[1em] w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-20 dark:opacity-100"></div>
+        <NavLink to="/catalog" style={{ fontSize: '20px' }}>
+          <div>Catalog</div>
         </NavLink>
       </div>
       <nav
@@ -68,6 +42,15 @@ const Header: React.FC = () => {
           className="space-x-4"
           style={{ display: 'flex', alignItems: 'center', fontWeight: 'bold', color: '#a94d29ff' }}
         >
+      {/* <nav className={styles.logoContainer}>
+         <NavLink
+          to="/"
+          style={{ color: '#a94d29ff' }}
+          className="text-white font-semibold text-lg hover:opacity-75 transition duration-300"
+        >
+          Main
+        </NavLink>
+        <div className={styles.logoContainer}> */}
           <UserAccountHeader />
         </div>
       </nav>
