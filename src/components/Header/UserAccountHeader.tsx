@@ -29,6 +29,8 @@ export default function UserAccountHeader() {
               onClick={() => {
                 deleteLocalStorage('bearToken');
                 deleteLocalStorage('bearID');
+                deleteLocalStorage('cartId');
+                deleteLocalStorage('refreshToken');
                 if (setIsAuth) setIsAuth(false);
               }}
             >

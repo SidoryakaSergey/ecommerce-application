@@ -1,6 +1,6 @@
 import { ResponseData } from '../interfaces';
 
-export default async function tryToGetToken(email: string, password: string) {
+export default async function updateTokenFromRefresh() {
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
   myHeaders.append(
@@ -8,11 +8,11 @@ export default async function tryToGetToken(email: string, password: string) {
     'Basic Tm9rakREa2RsVEFEY2U4TlFjNDl0R0dpOjd3dmdYbk1NNXJTeEVjWjduYjZTUEtoVFFUXzlia2V3',
   );
 
+  const refreshToken = localStorage.getItem('refreshToken') as string;
+
   const urlencoded = new URLSearchParams();
-  urlencoded.append('grant_type', 'password');
-  urlencoded.append('username', email);
-  urlencoded.append('password', password);
-  urlencoded.append('scope', 'manage_project:doomsday-store');
+  urlencoded.append('grant_type', 'refresh_token');
+  urlencoded.append('refresh_token', `${refreshToken}`);
 
   const requestOptions: RequestInit = {
     method: 'POST',
@@ -30,10 +30,7 @@ export default async function tryToGetToken(email: string, password: string) {
       if ('error' in result) {
         throw new Error(result.message);
       }
-      if (!localStorage.getItem('bearToken')) {
-        localStorage.setItem('bearToken', result.access_token);
-        localStorage.setItem('refreshToken', result.refresh_token as string);
-      }
+      localStorage.setItem('bearToken', result.access_token);
 
       return result;
     });
