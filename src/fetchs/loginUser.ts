@@ -39,6 +39,7 @@ export default function loginUser(
     })
     .then((result) => {
       const obj: ResponseUserData = JSON.parse(result) as ResponseUserData;
+      console.log(obj);
       setLocalStorage('bearID', obj.customer.id);
       if (obj.cart) {
         setLocalStorage('cartId', obj.cart.id);

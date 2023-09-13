@@ -41,7 +41,25 @@
     align-items: center;
     font-weight: bold;
     border: none;
-    
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  .headerContainer {
+    max-height: 300px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .navContainer {
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  
+  .navContent {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
   }
 
 }

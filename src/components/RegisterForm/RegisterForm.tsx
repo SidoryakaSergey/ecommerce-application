@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import { ToastContainer } from 'react-toastify';
@@ -13,6 +13,9 @@ import SelectCountry from '../UI/Selects/SelectCountry.tsx';
 import tryToGetToken from '../../fetchs/getToken.ts';
 import createCart from '../../fetchs/createCart.ts';
 import Cart from '../../interfaces/cart.ts';
+import { setLocalStorage } from '../../utils/localStorageFuncs.ts';
+import UserData from '../../interfaces/UserData.ts';
+import AuthContext from '../../context/authContext.ts';
 
 type RegistrationFormValues = {
   email: string;
@@ -37,6 +40,12 @@ interface TypeSelectedCountry {
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
+
+  const authContext = useContext(AuthContext);
+  let setIsAuth: Dispatch<SetStateAction<boolean>>;
+  if (authContext !== null) {
+    setIsAuth = authContext.setIsAuth;
+  }
 
   const methods = useForm<RegistrationFormValues>({
     mode: 'onBlur',
@@ -74,6 +83,7 @@ const RegistrationForm = () => {
         data.shippingDefault,
         data.shippingPostalCode,
         data.shippingStreet,
+        setIsAuth,
       );
       const tokenResult = await tryToGetToken(data.email, data.password);
       await createCart(tokenResult.access_token).then((response) => {
@@ -82,9 +92,10 @@ const RegistrationForm = () => {
         localStorage.setItem('cartId', cartdata.id);
       });
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const responseData = JSON.parse(result);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      const responseData: { customer: UserData } = JSON.parse(result);
+      const customerId = responseData.customer.id;
       if (responseData.customer) {
+        setLocalStorage('bearID', customerId);
         showSuccessToastMessage('Successful!');
         setTimeout(() => {
           navigate('/');

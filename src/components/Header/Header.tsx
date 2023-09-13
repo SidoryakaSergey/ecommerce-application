@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import Hamburger from 'hamburger-react';
-import { UserGroupIcon } from '@heroicons/react/24/outline';
+import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
 import UserAccountHeader from './UserAccountHeader';
 
@@ -34,15 +31,13 @@ const Header: React.FC = () => {
           color: '#a94d29ff',
           gap: '15px',
         }}
+        className={styles.navContainer}
       >
-        <Link to="/about" style={{ color: '#a94d29ff' }}>
-          <UserGroupIcon className="w-10 h-10 hover:text-blue-600" title="About Us" />
-        </Link>
         <div
-          className="space-x-4"
+          className={styles.navContent}
           style={{ display: 'flex', alignItems: 'center', fontWeight: 'bold', color: '#a94d29ff' }}
         >
-      {/* <nav className={styles.logoContainer}>
+          {/* <nav className={styles.logoContainer}>
          <NavLink
           to="/"
           style={{ color: '#a94d29ff' }}
