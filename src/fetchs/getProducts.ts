@@ -1,6 +1,6 @@
 import getAdminToken from './getAdminToken.ts';
 
-export default async function getProducts(catalogValue?: string) {
+export default async function getProducts(catalogValue?: string, page?: number) {
   let categoriesId: undefined | string;
   if (catalogValue) {
     if (catalogValue === 'thrillers') {
@@ -21,22 +21,28 @@ export default async function getProducts(catalogValue?: string) {
     redirect: 'follow',
   };
 
+  const limit = 10; // Количество элементов на странице
+  const offset = page ? (page - 1) * limit : 0; // смещение на странице
+
+  const queryParameters = `limit=${limit}&offset=${offset}`;
+
   return categoriesId
     ? fetch(
-        `https://api.europe-west1.gcp.commercetools.com/doomsday-store/product-projections/search?filter=categories.id:"${categoriesId}"`,
+        `https://api.europe-west1.gcp.commercetools.com/doomsday-store/product-projections/search?filter=categories.id:"${categoriesId}"&${queryParameters}`,
         requestOptions,
       )
         .then((response) => {
           if (!response.ok) {
             throw new Error('Ошибка при получении продуктов');
           }
+          // console.log(response.json().then((res) => console.log(res)));
           return response.json();
         })
         .catch((error: Error) => {
           throw new Error(error.message);
         })
     : fetch(
-        'https://api.europe-west1.gcp.commercetools.com/doomsday-store/products/',
+        `https://api.europe-west1.gcp.commercetools.com/doomsday-store/products/?${queryParameters}`,
         requestOptions,
       )
         .then((response) => {

@@ -21,7 +21,7 @@ export default function AboutUsPage() {
             Rolling Scopes developer community since 2013.
           </div>
         </div>
-        <h2 className=" text-stone-50 font-extrabold text-2xl">Team The Apocalype Riders</h2>
+        <h2 className="text-stone-50 font-extrabold text-2xl">Team The Apocalype Riders</h2>
         <div className="border-b border-white h-1 w-80 mb-6"></div>
         <div className=" relative flex flex-col items-center justify-center w-full">
           <div className="absolute inset-0 bg-white opacity-20 rounded-lg m-4"></div>
