@@ -14,6 +14,7 @@ const Products: React.FC<ProductsProps> = (props) => {
   const [products, setProducts] = useState<ProductsArr[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [activePage, setActivePage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
 
   function calculateLimit() {
     const windowWidth = window.innerWidth;
@@ -44,14 +45,17 @@ const Products: React.FC<ProductsProps> = (props) => {
 
   useEffect(() => {
     const fetchProducts = () => {
+      setIsLoading(true);
       if (props.catalogValue) {
         getProducts(props.catalogValue, activePage, limit)
           .then((response: ResponseProducts) => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
             setProducts(response.results);
             setTotalPages(Math.ceil(response.total / limit));
+            setIsLoading(false);
           })
           .catch((error: Error) => {
+            setIsLoading(false);
             return error.message;
           });
       } else {
@@ -60,8 +64,10 @@ const Products: React.FC<ProductsProps> = (props) => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
             setProducts(response.results);
             setTotalPages(Math.ceil(response.total / limit));
+            setIsLoading(false);
           })
           .catch((error: Error) => {
+            setIsLoading(false);
             return error.message;
           });
       }
@@ -76,25 +82,31 @@ const Products: React.FC<ProductsProps> = (props) => {
   return (
     <div className={styles.mainBox}>
       <div className={styles.productsBox} style={{ padding: '15px 0' }}>
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            id={product.id}
-            version={product.version}
-            versionModifiedAt={product.versionModifiedAt}
-            lastMessageSequenceNumber={product.lastMessageSequenceNumber}
-            createdAt={product.createdAt}
-            lastModifiedAt={product.lastModifiedAt}
-            lastModifiedBy={product.lastModifiedBy}
-            createdBy={product.createdBy}
-            productType={product.productType}
-            masterData={product.masterData}
-            priceMode={product.priceMode}
-            lastVariantId={product.lastVariantId}
-            masterVariant={product.masterVariant}
-            name={product.name}
-          />
-        ))}
+        {isLoading ? (
+          <div className="flex w-full justify-center">
+            <p className="text-gray-500 text-xl mt-4">Loading...</p>
+          </div>
+        ) : (
+          products.map((product) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              version={product.version}
+              versionModifiedAt={product.versionModifiedAt}
+              lastMessageSequenceNumber={product.lastMessageSequenceNumber}
+              createdAt={product.createdAt}
+              lastModifiedAt={product.lastModifiedAt}
+              lastModifiedBy={product.lastModifiedBy}
+              createdBy={product.createdBy}
+              productType={product.productType}
+              masterData={product.masterData}
+              priceMode={product.priceMode}
+              lastVariantId={product.lastVariantId}
+              masterVariant={product.masterVariant}
+              name={product.name}
+            />
+          ))
+        )}
       </div>
       <div className="flex items-center justify-center w-full">
         <ReactPaginate
