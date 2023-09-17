@@ -1,6 +1,6 @@
 import getAdminToken from './getAdminToken.ts';
 
-export default async function getProducts(catalogValue?: string, page?: number) {
+export default async function getProducts(catalogValue?: string, page?: number, limit?: number) {
   let categoriesId: undefined | string;
   if (catalogValue) {
     if (catalogValue === 'thrillers') {
@@ -11,6 +11,7 @@ export default async function getProducts(catalogValue?: string, page?: number) 
       categoriesId = '19c9ac10-3a54-4527-a385-85db23dccca8';
     }
   }
+  let offset;
   const myHeaders = new Headers();
   const adminToken = await getAdminToken();
   myHeaders.append('Authorization', `Bearer ${adminToken}`);
@@ -20,9 +21,9 @@ export default async function getProducts(catalogValue?: string, page?: number) 
     headers: myHeaders,
     redirect: 'follow',
   };
-
-  const limit = 10; // Количество элементов на странице
-  const offset = page ? (page - 1) * limit : 0; // смещение на странице
+  if (limit) {
+    offset = page ? (page - 1) * limit : 0; // смещение на странице
+  }
 
   const queryParameters = `limit=${limit}&offset=${offset}`;
 
