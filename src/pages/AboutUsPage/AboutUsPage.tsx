@@ -1,9 +1,9 @@
 import styles from './about.module.css';
-import logoRSS from '../../assets/logo/logo-rsschool3.png';
-
-import DevelopmentCardAlex from '../../components/DevelopmentCards/DevelopmentCardAlex';
-import DevelopmentCardSerg from '../../components/DevelopmentCards/DevelopmentCardSerg';
-import DevelopmentCardVitalik from '../../components/DevelopmentCards/DevelopmentCardVitalik';
+// import logoRSS from '../../assets/logo/logo-rsschool3.png';
+//
+// import DevelopmentCardAlex from '../../components/DevelopmentCards/DevelopmentCardAlex';
+// import DevelopmentCardSerg from '../../components/DevelopmentCards/DevelopmentCardSerg';
+// import DevelopmentCardVitalik from '../../components/DevelopmentCards/DevelopmentCardVitalik';
 
 export default function AboutUsPage() {
   return (
@@ -16,13 +16,7 @@ export default function AboutUsPage() {
                 Who <br /> we <br /> are.
               </h1>
             </div>
-            <div className={styles.logoPhoto}>
-              <img
-                className={styles.logoPhotoCur}
-                src="../../../src/assets/photo/MyCollages.jpg"
-                alt="photo"
-              />
-            </div>
+            <div className={styles.logoPhoto}></div>
           </div>
           <div className={styles.firstSectionDesc}>
             <p>Meet the specialists in creating frontend applications.</p>
@@ -41,7 +35,13 @@ export default function AboutUsPage() {
           <div className={styles.descSectionOneDecriptionContentBox}>
             <h2 className={styles.descSectionOneDecriptionContentTitle}>About Me</h2>
             <p className={styles.descSectionOneDecriptionContentDescValue}>
-              Hi, my name is Vitalii Semenov, and I am a budding web developer with a master's degree in rock mechanics from Saint Petersburg Mining University. Since December 2022, I have been enrolled in RS School with a mission to code the future! Bringing a unique blend of analytical thinking and a passion for problem-solving, I am a former university teacher turned coding enthusiast. You can connect with me on LinkedIn or check out my coding journey on GitHub. In my free time, I love to explore hidden gem coffee shops around town, searching for the perfect cup of brew. ☕
+              Hi, my name is Vitalii Semenov, and I am a budding web developer with a master&apos;s
+              degree in rock mechanics from Saint Petersburg Mining University. Since December 2022,
+              I have been enrolled in RS School with a mission to code the future! Bringing a unique
+              blend of analytical thinking and a passion for problem-solving, I am a former
+              university teacher turned coding enthusiast. You can connect with me on LinkedIn or
+              check out my coding journey on GitHub. In my free time, I love to explore hidden gem
+              coffee shops around town, searching for the perfect cup of brew. ☕
             </p>
           </div>
           <div className={styles.descSectionOnePhotoContentBox}>
