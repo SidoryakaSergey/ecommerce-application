@@ -43,6 +43,11 @@
   gap: 5px;
   flex-direction: column;
   padding-left: 80px;
+  z-index: 100;
+}
+
+.descSectionOnePhotoContentBox {
+  
 }
 
 .firstSectionDesc {
@@ -56,15 +61,18 @@
   font-weight: normal;
 }
 
+
 .logoPhoto {
   width: 400px;
   height: 400px;
   flex-shrink: 0;
   position: relative;
-  z-index: 9999;
+  background-image: url(../../../src/assets/photo/MyCollages.jpg);
+  background-size: cover;
+  object-fit: cover;
 }
-
-.logoPhoto:before {
+.logoPhoto::after {
+  z-index: -1;
   content: "";
   position: absolute;
   right: -50px;
@@ -72,7 +80,6 @@
   width: 400px;
   height: 400px;
   background: #8e6f9f;
-  z-index: -4;
 }
 
 .logoPhotoCur {
