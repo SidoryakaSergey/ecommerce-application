@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Modal from 'react-modal';
 import { NavLink } from 'react-router-dom';
+import { TrashIcon } from '@heroicons/react/24/outline';
+import { ToastContainer } from 'react-toastify';
 import { ProductsArr } from '../../interfaces/productsI.ts';
 import getProduct from '../../fetchs/getProduct.ts';
 import styles from './ProductPageCard.module.css';
@@ -13,9 +15,11 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import Loading from '../Loading/Loading.tsx';
 import getCart from '../../fetchs/getCart.ts';
-import Cart from '../../interfaces/cart.ts';
+import Cart, { MeCartsResp } from '../../interfaces/cart.ts';
 import updateTokenFromRefresh from '../../fetchs/updateTokenFromRefresh.ts';
-import updateCart from '../../fetchs/updateCart.ts';
+import updateCart from '../../fetchs/updateCartAddItem.ts';
+import deleteProductFromCartFetch from '../../fetchs/deleteProductFromCart.ts';
+import { showErrorToastMessage } from '../../utils/toastFuncs.tsx';
 
 interface ProductPageCardProps {
   id: string;
@@ -68,7 +72,6 @@ const ProductPageCard = (props: ProductPageCardProps) => {
   }, [productCheck]);
 
   useEffect(() => {
-    // eslint-disable-next-line no-void
     void makePriceButton();
   }, [makePriceButton]);
 
@@ -92,6 +95,34 @@ const ProductPageCard = (props: ProductPageCardProps) => {
       height: '100%',
     },
   };
+
+  function deleteProductFromCart() {
+    void updateTokenFromRefresh().then(() => {
+      const userToken = localStorage.getItem('bearToken') as string;
+      void getCart(userToken).then((getResponse) => {
+        const getCartData: MeCartsResp = JSON.parse(getResponse);
+        const cartVersion = getCartData.results[0].version;
+        const cartId = getCartData.results[0].id;
+        const lineItemProductId = getCartData.results[0].lineItems.find(
+          (el) => el.productId === id,
+        );
+        if (lineItemProductId) {
+          void deleteProductFromCartFetch(
+            cartId,
+            lineItemProductId.id,
+            cartVersion,
+            userToken,
+          ).then((deleteProductResp) => {
+            const createData: Cart = JSON.parse(deleteProductResp);
+            localStorage.setItem('cartId', createData.id);
+            setIsProductInCart(false);
+          });
+        } else {
+          showErrorToastMessage('Error deleting product. Product not found.');
+        }
+      });
+    });
+  }
 
   let prices;
 
@@ -226,30 +257,27 @@ const ProductPageCard = (props: ProductPageCardProps) => {
                 />
               </div>
             </div>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                width: '100%',
-                justifyContent: 'center',
-              }}
-            ></div>
           </div>
           <div className={styles.annotaion}>
             {product.masterData.current.masterVariant.attributes[5].value}
           </div>
-          {isProductInCart === false ? (
+          {!isProductInCart ? (
             // eslint-disable-next-line @typescript-eslint/no-misused-promises
             <button className={styles.myButton} onClick={buy}>
               Add to cart
             </button>
           ) : (
-            <NavLink to={'/cart'} className={styles.myButton}>
-              Go to my cart
-            </NavLink>
+            <div className={styles.goToMyCartBox}>
+              <NavLink to={'/cart'} className={`${styles.myButton} ${styles.GoToCartBtn}`}>
+                Go to my cart
+              </NavLink>
+              <div className={styles.deleteProductBox} onClick={deleteProductFromCart}>
+                <TrashIcon />
+              </div>
+            </div>
           )}
         </div>
+        <ToastContainer />
       </div>
     );
   }

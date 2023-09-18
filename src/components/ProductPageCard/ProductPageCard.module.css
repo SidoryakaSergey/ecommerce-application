@@ -46,19 +46,12 @@
   font-weight: bold;
 }
 
-@media (hover:hover) {
-  .myButton:hover {
-
-    transform: scale(1.04);
-  }
-
-}
-
 .descBox {
   width: 41%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 5px;
 }
 
 .imageWrapper {
@@ -79,9 +72,41 @@
 }
 
 .annotaion {
-  margin-top: 30px;
   text-align: justify;
 }
+
+.goToMyCartBox {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  gap: 10px;
+}
+
+.GoToCartBtn {
+  display: block;
+  color: black;
+  background: linear-gradient(to right bottom, rgb(227, 160, 8), rgb(255, 138, 76));
+}
+
+.deleteProductBox {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.deleteProductBox * {
+  height: 50%;
+}
+
+.myButton {
+  transition: .1s ease-out;
+}
+
 
 @media (max-width: 800px) {
   .descriptionBox {
@@ -182,6 +207,11 @@
 
   .productCard:hover .bookName {
     color: var(--van-dyke)
+  }
+
+  .myButton:hover {
+    transform: none !important;
+    color: #707070;
   }
 }
 

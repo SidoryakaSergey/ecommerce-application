@@ -126,3 +126,10 @@ interface Attribute {
   name: string;
   value: string;
 }
+
+export interface MeCartsResp {
+  count: number;
+  limit: number;
+  offset: number;
+  results: Cart[];
+}
