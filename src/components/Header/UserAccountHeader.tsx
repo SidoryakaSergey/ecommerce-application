@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {
   UserCircleIcon,
   ArrowLeftOnRectangleIcon,
@@ -23,17 +23,17 @@ export default function UserAccountHeader() {
           style={{
             width: '100%',
             display: 'flex',
-            gap: '15px',
+            gap: '10px',
             color: '#E5E7EB',
             justifyContent: 'space-evenly',
           }}
         >
-          <Link to="/cart" style={{ color: 'rgb(229, 231, 235)' }}>
+          <NavLink to="/cart">
             <ShoppingCartIcon className="w-10 h-10 hover:text-blue-600" title="About Us" />
-          </Link>
-          <Link to="/about" style={{ color: 'rgb(229, 231, 235)' }}>
+          </NavLink>
+          <NavLink to="/about">
             <UserGroupIcon className="w-10 h-10 hover:text-blue-600" title="About Us" />
-          </Link>
+          </NavLink>
           <NavLink to="/user">
             <button title="User profile">
               <UserCircleIcon className="w-10 h-10 hover:text-blue-600" />
@@ -55,25 +55,25 @@ export default function UserAccountHeader() {
           </NavLink>
         </div>
       ) : (
-        <>
-          <Link to="/cart" style={{ color: 'rgb(229, 231, 235)' }}>
-            <ShoppingCartIcon className="w-10 h-10 hover:text-blue-600" title="About Us" />
-          </Link>
-          <Link to="/about" style={{ color: 'rgb(229, 231, 235)' }}>
-            <UserGroupIcon className="w-10 h-10 hover:text-blue-600" title="About Us" />
-          </Link>
+        <div className="flex text-white gap-[10px]">
+          <NavLink to="/cart">
+            <ShoppingCartIcon className="w-10 h-10  hover:text-blue-600" title="About Us" />
+          </NavLink>
+          <NavLink to="/about">
+            <UserGroupIcon className="w-10 h-10  hover:text-blue-600" title="About Us" />
+          </NavLink>
           <NavLink to="/register">
-            <button title="Register user" style={{ color: '#E5E7EB' }}>
-              <UserPlusIcon className="w-10 h-10 mr-2" />
+            <button title="Register user">
+              <UserPlusIcon className="w-10 h-10  hover:text-blue-600" />
             </button>
           </NavLink>
 
           <NavLink to="/login">
-            <button title="Login user" style={{ color: '#E5E7EB' }}>
+            <button title="Login user" className="w-10 h-10  hover:text-blue-600">
               <ArrowLeftOnRectangleIcon className="w-10 h-10 mr-2" />
             </button>
           </NavLink>
-        </>
+        </div>
       )}
     </>
   );
