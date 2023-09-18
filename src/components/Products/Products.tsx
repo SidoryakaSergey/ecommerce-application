@@ -10,6 +10,7 @@ import getProducts from '../../fetchs/getProducts.ts';
 import { ProductsArr, ResponseProducts } from '../../interfaces/productsI.ts';
 import styles from './Products.module.css';
 import ProductCard from '../ProductCard/ProductCard.tsx';
+import Loading from "../Loading/Loading.tsx";
 
 type ProductsProps = {
   catalogValue?: string;
@@ -140,7 +141,7 @@ const Products: React.FC<ProductsProps> = (props) => {
       <div className={styles.productsBox} style={{ padding: '15px 0' }}>
         {isLoading ? (
           <div className="flex w-full justify-center">
-            <p className="text-gray-500 text-xl mt-4">Loading...</p>
+            <Loading />;
           </div>
         ) : (
           products.map((product) => (

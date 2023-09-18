@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import Header from '../Header/Header.tsx';
 import logoPng from '../../assets/logo/logo.png';
 
@@ -52,12 +52,15 @@ function Layout() {
                   </h2>
                   <ul className="text-gray-500 dark:text-gray-400 font-medium">
                     <li className="mb-4">
-                      <a href="#" className="hover:underline">
-                        About us
-                      </a>
+                      <NavLink to="/about">About us</NavLink>
                     </li>
                     <li>
-                      <a href="#" className="hover:underline">
+                      <a
+                        href="https://rs.school/"
+                        target="_blank"
+                        className="hover:underline"
+                        rel="noreferrer"
+                      >
                         Rs School
                       </a>
                     </li>

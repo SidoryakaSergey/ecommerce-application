@@ -36,7 +36,6 @@ const ProductPageCard = (props: ProductPageCardProps) => {
   const [isProductInCart, setIsProductInCart] = useState(false);
 
   async function buy(): Promise<void> {
-    console.log(`fsadfsdf`);
     if (localStorage.getItem('bearToken')) {
       await updateTokenFromRefresh().then(() => {
         const token = localStorage.getItem('bearToken') as string;

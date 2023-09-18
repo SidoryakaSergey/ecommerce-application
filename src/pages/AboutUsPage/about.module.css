@@ -37,7 +37,7 @@
   height: 100%;
   margin-left: auto;
   margin-right: auto;
-  background: tomato;
+  background: #FF8552;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -47,7 +47,33 @@
 }
 
 .descSectionOnePhotoContentBox {
-  
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-height: 400px;
+  padding: 0 5%;
+}
+
+.descSectionOnePhotoContentPhoto {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-image: url("../../../src/assets/photo/vitalik.jpg");
+}
+.descSectionOnePhotoContentPhotoSerg {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-image: url("../../../src/assets/photo/serg.jpg");
+}.descSectionOnePhotoContentPhotoAlex {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-image: url("../../../src/assets/photo/alex.jpg");
 }
 
 .firstSectionDesc {
@@ -98,13 +124,78 @@
 }
 
 .descSectionOneDecription {
-  width: 50%;
+  width: 100%;
   height: 100%;
+  display: flex;
+
+}
+
+.thanksSection {
+  width: 100%;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.thanksBox {
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.rsLogo {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 200px;
+  height: 50px;
+  background-image: url("../../../src/assets/logo/logoRs.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 25px;
+}
+
+.rsParagraph {
+  text-align: center;
+  font-weight: bold;
+}
+
+.descSectionOnePhotoContentDescVal,
+.descSectionOneDecriptionContentDescValue {
+  text-align: justify;
+}
+
+.descSectionOneDecriptionContentBox {
+  width: 50%;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 0 5%;
+  gap: 10px;
+  min-height: 400px;
+  background:#297373 ;
+  color: white;
+}
+
+.descSectionOneDecriptionContentBoxWrapper{
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.descSectionOnePhotoContentBoxWrapper {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 @media (min-width: 300px) {
@@ -135,15 +226,21 @@
 
   }
 
-  .logoPhoto:before {
+  .logoPhoto:after {
     width: 150px;
     height: 150px;
-
+    top: -25px;
+    right: -25px;
   }
 
   .firstSectionBox {
     justify-content: center;
     padding-left: 20px;
+  }
+
+  .descSectionOneDecription {
+    flex-direction: column;
+    width: 100%;
   }
 
   .firstSection {
@@ -156,12 +253,43 @@
   .descSectionOneDecriptionContentTitle {
     font-size: 26px;
   }
+
+  .descSectionOneDecriptionContentBox,
+  .descSectionOnePhotoContentBox {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+  }
+
+  .descSectionOne {
+    height: auto;
+    width: 100%;
+    display: flex;
+  }
+
+  .thanksSection {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .thanksBox {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 
 @media (min-width: 768px) {
   .title {
     font-size: 100px;
     text-decoration: underline;
+  }
+  
+  .descSectionOneDecription {
+    flex-direction: row;
   }
 
   .firstSectionBox {
@@ -174,7 +302,7 @@
 
   }
 
-  .logoPhoto:before {
+  .logoPhoto:after {
     width: 250px;
     height: 250px;
 
@@ -189,6 +317,33 @@
 
   .descSectionOneDecriptionContentTitle {
     font-size: 40px;
+  }
+
+  .descSectionOneDecriptionContentBox,
+  .descSectionOnePhotoContentBox {
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 50%;
+  }
+
+  .descSectionOne {
+    height: 1000px;
+    width: 100%;
+    display: flex;
+  }
+
+  .thanksSection {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .thanksBox {
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
   }
   
   
@@ -223,7 +378,7 @@
 
   }
 
-  .logoPhoto:before {
+  .logoPhoto:after {
     width: 400px;
     height: 400px;
 
@@ -232,4 +387,36 @@
   .descSectionOneDecriptionContentTitle {
     font-size: 60px;
   }
+  
+  .descSectionOneDecription {
+    flex-direction: row;
+  }
+  
+  .descSectionOneDecriptionContentBox,
+  .descSectionOnePhotoContentBox {
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 50%;
+  }
+
+  .descSectionOne {
+    height: 1000px;
+    width: 100%;
+    display: flex;
+  }
+
+  .thanksSection {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .thanksBox {
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
 }
