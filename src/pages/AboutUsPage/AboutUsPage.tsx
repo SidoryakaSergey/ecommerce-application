@@ -7,31 +7,49 @@ import DevelopmentCardVitalik from '../../components/DevelopmentCards/Developmen
 
 export default function AboutUsPage() {
   return (
-    <div className={styles.bg}>
-      <div className="flex items-center flex-col mb-10 ">
-        <div className="flex flex-col justify-center items-center md:flex-row  relative rounded-lg bg-gray-400  shadow-md p-5 m-10">
-          <div className="absolute inset-0 bg-slate-800 opacity-80 rounded-lg"></div>
-          <div className="bg-white z-10 w-60 h-30 hover:bg-green-200">
-            <a href="https://rs.school/" target="_blank" rel="noreferrer">
-              <img src={logoRSS} alt="logoRSS" className="w-full h-full object-cover" />
-            </a>
+    <div className={styles.wrapper}>
+      <section className={styles.firstSection}>
+        <div className={styles.firstSectionBox}>
+          <div className={styles.firstSectionContentWrapper}>
+            <div className={styles.titleBox}>
+              <h1 className={styles.title}>
+                Who <br /> we <br /> are.
+              </h1>
+            </div>
+            <div className={styles.logoPhoto}>
+              <img
+                className={styles.logoPhotoCur}
+                src="../../../src/assets/photo/MyCollages.jpg"
+                alt="photo"
+              />
+            </div>
           </div>
-          <div className="z-10 mt-2 md:ml-4">
-            RS School is free-of-charge and community-based education program conducted by The
-            Rolling Scopes developer community since 2013.
+          <div className={styles.firstSectionDesc}>
+            <p>Meet the specialists in creating frontend applications.</p>
+            <p>
+              Our team of frontend application specialists is committed to creating innovative and
+              user-friendly applications that meet our clients unique needs. We are constantly
+              researching the latest technologies and trends in the industry to ensure that we
+              deliver the best possible solutions.
+            </p>
           </div>
         </div>
-        <h2 className=" text-stone-50 font-extrabold text-2xl">Team The Apocalype Riders</h2>
-        <div className="border-b border-white h-1 w-80 mb-6"></div>
-        <div className=" relative flex flex-col items-center justify-center w-full">
-          <div className="absolute inset-0 bg-white opacity-20 rounded-lg m-4"></div>
-          <DevelopmentCardAlex />
-          <br />
-          <DevelopmentCardSerg />
-          <br />
-          <DevelopmentCardVitalik />
+        <div className={styles.firstSectionRightMenu}></div>
+      </section>
+      <section className={styles.descSectionOne}>
+        <div className={styles.descSectionOneDecription}>
+          <div className={styles.descSectionOneDecriptionContentBox}>
+            <h2 className={styles.descSectionOneDecriptionContentTitle}>About Me</h2>
+            <p className={styles.descSectionOneDecriptionContentDescValue}>
+              Hi, my name is Vitalii Semenov, and I am a budding web developer with a master's degree in rock mechanics from Saint Petersburg Mining University. Since December 2022, I have been enrolled in RS School with a mission to code the future! Bringing a unique blend of analytical thinking and a passion for problem-solving, I am a former university teacher turned coding enthusiast. You can connect with me on LinkedIn or check out my coding journey on GitHub. In my free time, I love to explore hidden gem coffee shops around town, searching for the perfect cup of brew. ☕
+            </p>
+          </div>
+          <div className={styles.descSectionOnePhotoContentBox}>
+            <h2 className={styles.descSectionOnePhotoContentPhoto}></h2>
+            <p className={styles.descSectionOnePhotoContentDescVal}></p>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
