@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
+import {
+  ArrowRightIcon,
+  ArrowLeftIcon,
+  ArrowUpIcon,
+  ArrowDownIcon,
+} from '@heroicons/react/24/outline';
 import getProducts from '../../fetchs/getProducts.ts';
 import { ProductsArr, ResponseProducts } from '../../interfaces/productsI.ts';
 import styles from './Products.module.css';
@@ -15,6 +20,11 @@ const Products: React.FC<ProductsProps> = (props) => {
   const [totalPages, setTotalPages] = useState(0);
   const [activePage, setActivePage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAscendingName, setIsAscendingName] = useState(true);
+  const [isAscendingPrice, setIsAscendingPrice] = useState(false);
+  const [priceColor, setPriceColor] = useState('bg-blue-200');
+  const [nameColor, setNameColor] = useState('bg-blue-500');
+  const [sortByName, setSortByName] = useState(true);
 
   function calculateLimit() {
     const windowWidth = window.innerWidth;
@@ -47,7 +57,14 @@ const Products: React.FC<ProductsProps> = (props) => {
     const fetchProducts = () => {
       setIsLoading(true);
       if (props.catalogValue) {
-        getProducts(props.catalogValue, activePage, limit)
+        getProducts(
+          activePage,
+          limit,
+          sortByName,
+          isAscendingName,
+          isAscendingPrice,
+          props.catalogValue,
+        )
           .then((response: ResponseProducts) => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
             setProducts(response.results);
@@ -59,7 +76,7 @@ const Products: React.FC<ProductsProps> = (props) => {
             return error.message;
           });
       } else {
-        getProducts(undefined, activePage, limit)
+        getProducts(activePage, limit, sortByName, isAscendingName, isAscendingPrice)
           .then((response: ResponseProducts) => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
             setProducts(response.results);
@@ -73,14 +90,53 @@ const Products: React.FC<ProductsProps> = (props) => {
       }
     };
     fetchProducts();
-  }, [props.catalogValue, activePage, limit]);
+  }, [props.catalogValue, activePage, limit, sortByName, isAscendingName, isAscendingPrice]);
 
   const handlePageClick = (e: { selected: number }) => {
     setActivePage(e.selected + 1);
   };
 
+  const handelePriceClick = () => {
+    setIsAscendingPrice((prevIsAscending) => !prevIsAscending);
+    setPriceColor('bg-blue-500');
+    setNameColor('bg-blue-200');
+    setSortByName(false);
+  };
+
+  const handeleNameClick = () => {
+    setIsAscendingName((prevIsAscending) => !prevIsAscending);
+    setNameColor('bg-blue-500');
+    setPriceColor('bg-blue-200');
+    setSortByName(true);
+  };
+
   return (
     <div className={styles.mainBox}>
+      <div className="flex mt-2 gap-2">
+        <button
+          className={`flex items-center space-x-1 px-2 py-1 ${nameColor} text-black rounded-md hover:bg-blue-700`}
+          onClick={handeleNameClick}
+        >
+          <span>Name</span>
+          {isAscendingName ? (
+            <ArrowUpIcon className="w-4 h-4" />
+          ) : (
+            <ArrowDownIcon className="w-4 h-4" />
+          )}
+        </button>
+
+        <button
+          className={`flex items-center space-x-1 px-2 py-1 ${priceColor} text-black rounded-md hover:bg-blue-700`}
+          onClick={handelePriceClick}
+        >
+          <span>Price</span>
+          {isAscendingPrice ? (
+            <ArrowUpIcon className="w-4 h-4" />
+          ) : (
+            <ArrowDownIcon className="w-4 h-4" />
+          )}
+        </button>
+      </div>
       <div className={styles.productsBox} style={{ padding: '15px 0' }}>
         {isLoading ? (
           <div className="flex w-full justify-center">
@@ -132,18 +188,18 @@ const Products: React.FC<ProductsProps> = (props) => {
               <ArrowRightIcon />
             </button>
           }
-          nextLinkClassName="h-[30px] w-[30px] flex items-center justify-center rounded-md border border-gray-300 hover:bg-gray-200" // a
-          previousLinkClassName="h-[30px] w-[30px] flex items-center justify-center rounded-md border border-gray-300 hover:bg-gray-200" // a
-          previousClassName="" // li
-          nextClassName="" // li
+          nextLinkClassName="h-[30px] w-[30px] flex items-center justify-center rounded-md border border-gray-300 hover:bg-gray-200"
+          previousLinkClassName="h-[30px] w-[30px] flex items-center justify-center rounded-md border border-gray-300 hover:bg-gray-200"
+          previousClassName=""
+          nextClassName=""
           breakLabel={'...'}
           pageCount={totalPages}
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
           onPageChange={handlePageClick}
-          containerClassName="flex justify-center w-full gap-1 mt-5" // контейнер цыфр
-          pageClassName="h-[30px] w-[30px] flex items-center justify-center " // class li
-          pageLinkClassName="h-[30px] w-[30px] flex items-center justify-center hover:bg-blue-200 text-blue-700 rounded-full" // class a
+          containerClassName="flex justify-center w-full gap-1 mt-5"
+          pageClassName="h-[30px] w-[30px] flex items-center justify-center "
+          pageLinkClassName="h-[30px] w-[30px] flex items-center justify-center hover:bg-blue-200 text-blue-700 rounded-full"
           activeClassName="bg-blue-500 text-white rounded-full"
         />
       </div>
