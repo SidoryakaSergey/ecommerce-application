@@ -206,6 +206,14 @@
     justify-content: space-between;
   }
   
+  .changeOrderFirt {
+    order: 2;
+  }
+  
+  .changeOrderFirtTitle {
+    align-self: flex-start !important;
+  }
+   
   .titleBox {
     width: 100%;
   }
@@ -340,10 +348,22 @@
     align-items: center;
   }
 
+  .changeOrderFirt {
+    order: 1;
+  }
+
+  .changeOrderFirtTitle {
+    align-self: flex-end !important;
+  }
+
   .thanksBox {
     width: 50%;
     margin-right: auto;
     margin-left: auto;
+  }
+
+  .changeOrderSecond {
+    order: 2;
   }
   
   
@@ -403,6 +423,18 @@
     height: 1000px;
     width: 100%;
     display: flex;
+  }
+
+  .changeOrderFirt {
+    order: 1;
+  }
+  
+  .changeOrderSecond {
+    order: 2;
+  }
+
+  .changeOrderFirtTitle {
+    align-self: flex-end !important;
   }
 
   .thanksSection {

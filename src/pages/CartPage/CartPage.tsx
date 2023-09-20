@@ -216,7 +216,7 @@ const CartPage = () => {
                   <span className={stylesMy.cartInfoContainerSpan}>
                     {products?.totalLineItemQuantity
                       ? `${products?.totalLineItemQuantity} books`
-                      : `No items in the cart.`}
+                      : ``}
                   </span>
                 </div>
                 <div className={stylesMy.cartInfoContainerClearBox}>

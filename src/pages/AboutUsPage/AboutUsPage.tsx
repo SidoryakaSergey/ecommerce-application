@@ -67,8 +67,8 @@ export default function AboutUsPage() {
       </section>
       <section className={styles.descSectionOne}>
         <div className={styles.descSectionOneDecription}>
-          <div className={styles.descSectionOnePhotoContentBox}>
-            <div className={styles.descSectionOnePhotoContentBoxWrapper}>
+          <div className={`${styles.descSectionOnePhotoContentBox} ${styles.changeOrderFirt}`}>
+            <div className={`${styles.descSectionOnePhotoContentBoxWrapper}`}>
               <a
                 href="https://github.com/ZiberPax"
                 target="_blank"
@@ -85,10 +85,12 @@ export default function AboutUsPage() {
               </p>
             </div>
           </div>
-          <div className={styles.descSectionOneDecriptionContentBox}>
-            <div className={styles.descSectionOneDecriptionContentBoxWrapper}>
+          <div
+            className={`${styles.descSectionOneDecriptionContentBox} ${styles.changeOrderSecond}`}
+          >
+            <div className={`${styles.descSectionOneDecriptionContentBoxWrapper}`}>
               <h2
-                className={styles.descSectionOneDecriptionContentTitle}
+                className={`${styles.descSectionOneDecriptionContentTitle} ${styles.changeOrderFirtTitle}`}
                 style={{ alignSelf: 'flex-end' }}
               >
                 About Me
