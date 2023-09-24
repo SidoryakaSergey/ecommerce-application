@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && cp _redirects build/_redirects",
+    "deploy": "npm run build && npx gh-pages -d dist -e ecommerce-application",
     "preview": "vite preview",
     "test": "vitest --run",
     "lint": "eslint --ext .js,.cjs,.ts,.tsx .",
@@ -72,6 +73,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^6.0.0",
     "jsdom": "^22.1.0",
     "postcss": "^8.4.29",
     "prettier": "^3.0.0",

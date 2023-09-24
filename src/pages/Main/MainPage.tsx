@@ -7,7 +7,7 @@ function MainPage() {
     <div style={{ background: 'linear-gradient(rgb(4, 23, 30), rgb(8 35 45))' }}>
       <div
         style={{ color: '#E5E7EB' }}
-        className={'flex flex-col p-4 justify-evenly md:flex-row justify-center items-center'}
+        className={'flex flex-col p-4 justify-evenly md:flex-row  items-center'}
       >
         <div
           className={

@@ -21,7 +21,10 @@ function Layout() {
           <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
             <div className="md:flex md:justify-between">
               <div className="mb-6 md:mb-0 p-4">
-                <a href="https://flowbite.com/" className="flex items-center flex-col sm:flex-row">
+                <a
+                  href="https://github.com/SidoryakaSergey"
+                  className="flex items-center flex-col sm:flex-row"
+                >
                   <img src={logoPng} className="h-16 mr-3" alt="Doomsday Logo" />
                   <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                     The Apocalypse Riders
@@ -35,7 +38,7 @@ function Layout() {
                   </h2>
                   <ul className="text-gray-500 dark:text-gray-400 font-medium">
                     <li className="mb-4">
-                      <a href="https://github.com/themesberg/flowbite" className="hover:underline ">
+                      <a href="https://github.com/SidoryakaSergey" className="hover:underline ">
                         Github
                       </a>
                     </li>
@@ -57,7 +60,7 @@ function Layout() {
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="hover:underline">
+                      <a href="https://rs.school/" className="hover:underline">
                         Rs School
                       </a>
                     </li>
@@ -69,13 +72,16 @@ function Layout() {
             <div className="sm:flex sm:items-center sm:justify-between">
               <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
                 © 2023{' '}
-                <a href="https://flowbite.com/" className="hover:underline">
+                <a href="https://github.com/SidoryakaSergey" className="hover:underline">
                   Doomsday™
                 </a>
                 . All Rights Reserved.
               </span>
               <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
-                <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                <a
+                  href="https://discord.com/users/thanatus666"
+                  className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                >
                   <svg
                     className="w-6 h-6"
                     aria-hidden="true"
@@ -87,7 +93,10 @@ function Layout() {
                   </svg>
                   <span className="sr-only">Discord community</span>
                 </a>
-                <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                <a
+                  href="https://github.com/SidoryakaSergey"
+                  className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                >
                   <svg
                     className="w-6 h-6"
                     aria-hidden="true"

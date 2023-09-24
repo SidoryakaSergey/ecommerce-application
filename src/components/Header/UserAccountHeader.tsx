@@ -5,7 +5,7 @@ import {
   ArrowLeftOnRectangleIcon,
   ArrowRightOnRectangleIcon,
   UserPlusIcon,
-  UserGroupIcon,
+  // UserGroupIcon,
   ShoppingCartIcon,
 } from '@heroicons/react/24/outline';
 import AuthContext from '../../context/authContext';
@@ -31,9 +31,9 @@ export default function UserAccountHeader() {
           <NavLink to="/cart">
             <ShoppingCartIcon className="w-10 h-10 hover:text-blue-600" title="About Us" />
           </NavLink>
-          <NavLink to="/about">
+          {/* <NavLink to="/about">
             <UserGroupIcon className="w-10 h-10 hover:text-blue-600" title="About Us" />
-          </NavLink>
+          </NavLink> */}
           <NavLink to="/user">
             <button title="User profile">
               <UserCircleIcon className="w-10 h-10 hover:text-blue-600" />
@@ -59,9 +59,9 @@ export default function UserAccountHeader() {
           <NavLink to="/cart">
             <ShoppingCartIcon className="w-10 h-10  hover:text-blue-600" title="About Us" />
           </NavLink>
-          <NavLink to="/about">
+          {/* <NavLink to="/about">
             <UserGroupIcon className="w-10 h-10  hover:text-blue-600" title="About Us" />
-          </NavLink>
+          </NavLink> */}
           <NavLink to="/register">
             <button title="Register user">
               <UserPlusIcon className="w-10 h-10  hover:text-blue-600" />
