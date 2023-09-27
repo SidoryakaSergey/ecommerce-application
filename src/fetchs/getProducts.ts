@@ -1,6 +1,13 @@
 import getAdminToken from './getAdminToken.ts';
 
-export default async function getProducts(catalogValue?: string) {
+export default async function getProducts(
+  page: number,
+  limit: number,
+  sortByName: boolean,
+  isAscendingName: boolean,
+  isAscendingPrice: boolean,
+  catalogValue?: string,
+) {
   let categoriesId: undefined | string;
   if (catalogValue) {
     if (catalogValue === 'thrillers') {
@@ -11,6 +18,7 @@ export default async function getProducts(catalogValue?: string) {
       categoriesId = '19c9ac10-3a54-4527-a385-85db23dccca8';
     }
   }
+
   const myHeaders = new Headers();
   const adminToken = await getAdminToken();
   myHeaders.append('Authorization', `Bearer ${adminToken}`);
@@ -20,10 +28,22 @@ export default async function getProducts(catalogValue?: string) {
     headers: myHeaders,
     redirect: 'follow',
   };
+  let sortString: string;
+  const offset = page ? (page - 1) * limit : 0;
+
+  if (sortByName) {
+    sortString = isAscendingName ? 'name.en-us+asc' : 'name.en-us+desc';
+  } else {
+    sortString = isAscendingPrice
+      ? 'priceCurrency=USD&text.en-US=&sort=price+asc'
+      : 'priceCurrency=USD&text.en-US=&sort=price+desc';
+  }
+
+  const queryParameters = `limit=${limit}&offset=${offset.toString()}&sort=${sortString}`;
 
   return categoriesId
     ? fetch(
-        `https://api.europe-west1.gcp.commercetools.com/doomsday-store/product-projections/search?filter=categories.id:"${categoriesId}"`,
+        `https://api.europe-west1.gcp.commercetools.com/doomsday-store/product-projections/search?filter=categories.id:"${categoriesId}"&${queryParameters}`,
         requestOptions,
       )
         .then((response) => {
@@ -36,7 +56,7 @@ export default async function getProducts(catalogValue?: string) {
           throw new Error(error.message);
         })
     : fetch(
-        'https://api.europe-west1.gcp.commercetools.com/doomsday-store/products/',
+        `https://api.europe-west1.gcp.commercetools.com/doomsday-store/product-projections/search?&${queryParameters}`,
         requestOptions,
       )
         .then((response) => {

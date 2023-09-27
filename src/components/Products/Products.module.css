@@ -1,71 +1,83 @@
-
 .mainBox {
   width: 100%;
   margin: 0 auto;
   max-width: 1440px;
+  background: #f1f5f9;
 }
 .productsBox {
-    display: flex;
-    justify-content: center;
-    
-    flex-wrap: wrap;
-    gap: 15px;
-    width: 100%;
+  display: flex;
 
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+  background: inherit;
 }
 
 .productCard {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    width: 305px;
-    position: relative;
-    box-sizing: border-box;
-    flex-shrink: 0;
-    transition: .3s;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  width: 305px;
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  transition: 0.3s;
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
 }
 .productCard:hover {
   background-color: black;
-  scale: 1.5;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  scale: 1.1;
+  box-shadow:
+    rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
 
 .productCard__imgWr {
-    height: 322px;
-    width: 100%;
-    margin-bottom: 16px;
-    background-color: #fff;
-    position: relative;
-    box-sizing: border-box;
+  height: 322px;
+  width: 100%;
+  margin-bottom: 16px;
+  background: #f1f5f9;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .productCard__imgWr__imgBox {
-    height: 100%;
-    padding: 16px;
-    width: 100%;
-    position: relative;
-    box-sizing: border-box;
+  height: 100%;
+  padding: 16px;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
 }
 .productCard__imgWr__imgBox__img {
-    height: 100%;
-    margin: 0 auto;
-    box-sizing: border-box;
+  height: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .bookSpanBox {
-    margin-bottom: 8px;
-    color: #2A2B2D;
-    display: flex;
+  margin-bottom: 8px;
+  color: #2a2b2d;
+  display: flex;
 }
 
 .bookItemMoney {
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: 600;
-    color: #2A2B2D;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 600;
+  color: #2a2b2d;
 }
 
+@media (max-width: 800px) {
+  .productsBox {
+    display: flex;
+    justify-content: center;
 
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    background: inherit;
+  }
+}

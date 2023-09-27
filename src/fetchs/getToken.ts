@@ -32,6 +32,7 @@ export default async function tryToGetToken(email: string, password: string) {
       }
       if (!localStorage.getItem('bearToken')) {
         localStorage.setItem('bearToken', result.access_token);
+        localStorage.setItem('refreshToken', result.refresh_token as string);
       }
 
       return result;

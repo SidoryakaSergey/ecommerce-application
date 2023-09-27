@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import getAdminToken from './getAdminToken.ts';
 import { RawData } from '../interfaces';
 
@@ -16,6 +17,7 @@ export default async function registerCustomer(
   shippingDefault: boolean,
   shippingPostalCode: string,
   shippingStreet: string,
+  setIsAuth: Dispatch<SetStateAction<boolean>>,
 ) {
   const myHeaders = new Headers();
   const adminToken = await getAdminToken();
@@ -67,6 +69,7 @@ export default async function registerCustomer(
   )
     .then((response) => response.text())
     .then((result) => {
+      setIsAuth(true);
       return result;
     })
     .catch((error: Error) => error.message);

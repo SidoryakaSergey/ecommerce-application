@@ -5,6 +5,8 @@ import {
   ArrowLeftOnRectangleIcon,
   ArrowRightOnRectangleIcon,
   UserPlusIcon,
+  UserGroupIcon,
+  ShoppingCartIcon,
 } from '@heroicons/react/24/outline';
 import AuthContext from '../../context/authContext';
 import { deleteLocalStorage } from '../../utils/localStorageFuncs';
@@ -17,7 +19,21 @@ export default function UserAccountHeader() {
   return (
     <>
       {isAuth ? (
-        <div style={{ display: 'flex', gap: '15px' }}>
+        <div
+          style={{
+            width: '100%',
+            display: 'flex',
+            gap: '10px',
+            color: '#E5E7EB',
+            justifyContent: 'space-evenly',
+          }}
+        >
+          <NavLink to="/cart">
+            <ShoppingCartIcon className="w-10 h-10 hover:text-blue-600" title="About Us" />
+          </NavLink>
+          <NavLink to="/about">
+            <UserGroupIcon className="w-10 h-10 hover:text-blue-600" title="About Us" />
+          </NavLink>
           <NavLink to="/user">
             <button title="User profile">
               <UserCircleIcon className="w-10 h-10 hover:text-blue-600" />
@@ -29,6 +45,8 @@ export default function UserAccountHeader() {
               onClick={() => {
                 deleteLocalStorage('bearToken');
                 deleteLocalStorage('bearID');
+                deleteLocalStorage('cartId');
+                deleteLocalStorage('refreshToken');
                 if (setIsAuth) setIsAuth(false);
               }}
             >
@@ -37,19 +55,25 @@ export default function UserAccountHeader() {
           </NavLink>
         </div>
       ) : (
-        <>
+        <div className="flex text-white gap-[10px]">
+          <NavLink to="/cart">
+            <ShoppingCartIcon className="w-10 h-10  hover:text-blue-600" title="About Us" />
+          </NavLink>
+          <NavLink to="/about">
+            <UserGroupIcon className="w-10 h-10  hover:text-blue-600" title="About Us" />
+          </NavLink>
           <NavLink to="/register">
             <button title="Register user">
-              <UserPlusIcon className="w-10 h-10 mr-2 hover:text-blue-600" />
+              <UserPlusIcon className="w-10 h-10  hover:text-blue-600" />
             </button>
           </NavLink>
 
           <NavLink to="/login">
-            <button title="Login user">
-              <ArrowLeftOnRectangleIcon className="w-10 h-10 mr-2 hover:text-blue-600" />
+            <button title="Login user" className="w-10 h-10  hover:text-blue-600">
+              <ArrowLeftOnRectangleIcon className="w-10 h-10 mr-2" />
             </button>
           </NavLink>
-        </>
+        </div>
       )}
     </>
   );
